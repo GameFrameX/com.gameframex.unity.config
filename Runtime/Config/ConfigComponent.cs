@@ -5,6 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+using System;
 using GameFrameX.Event.Runtime;
 using GameFrameX.Runtime;
 using UnityEngine;
@@ -34,8 +35,9 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         protected override void Awake()
         {
+            ImplementationComponentType = Type.GetType(componentType);
+            InterfaceComponentType = typeof(IConfigManager);
             base.Awake();
-            new ConfigManager();
             m_ConfigManager = GameFrameworkEntry.GetModule<IConfigManager>();
             if (m_ConfigManager == null)
             {

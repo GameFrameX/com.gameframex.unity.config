@@ -12,8 +12,9 @@ using UnityEditor;
 namespace GameFrameX.Config.Editor
 {
     [CustomEditor(typeof(ConfigComponent))]
-    internal sealed class ConfigComponentInspector : GameFrameworkInspector
+    internal sealed class ConfigComponentInspector : ComponentTypeComponentInspector
     {
+        /*
         private SerializedProperty m_EnableLoadConfigUpdateEvent = null;
         private SerializedProperty m_CachedBytesSize = null;
 
@@ -67,6 +68,10 @@ namespace GameFrameX.Config.Editor
         {
             // m_ConfigHelperInfo.Refresh();
             serializedObject.ApplyModifiedProperties();
+        }*/
+        protected override void RefreshTypeNames()
+        {
+            RefreshComponentTypeNames(typeof(IConfigManager));
         }
     }
 }
