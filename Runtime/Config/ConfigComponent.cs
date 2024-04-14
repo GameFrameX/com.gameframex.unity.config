@@ -6,7 +6,6 @@
 //------------------------------------------------------------
 
 using System;
-using GameFrameX.Event.Runtime;
 using GameFrameX.Runtime;
 using UnityEngine;
 
@@ -20,7 +19,6 @@ namespace GameFrameX.Config.Runtime
     public sealed class ConfigComponent : GameFrameworkComponent
     {
         private IConfigManager m_ConfigManager = null;
-        private EventComponent m_EventComponent = null;
 
         /// <summary>
         /// 获取全局配置项数量。
@@ -44,265 +42,45 @@ namespace GameFrameX.Config.Runtime
                 Log.Fatal("Config manager is invalid.");
                 return;
             }
-
         }
 
-        private void Start()
+        /// <summary>
+        /// 获取指定全局配置项。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetConfig<T>() where T : IDataTable
         {
-            BaseComponent baseComponent = GameEntry.GetComponent<BaseComponent>();
-            if (baseComponent == null)
+            if (HasConfig<T>())
             {
-                Log.Fatal("Base component is invalid.");
-                return;
+                var configName = typeof(T).Name;
+                var config = m_ConfigManager.GetConfig(configName);
+                if (config != null)
+                {
+                    return (T)config;
+                }
             }
 
-            m_EventComponent = GameEntry.GetComponent<EventComponent>();
-            if (m_EventComponent == null)
-            {
-                Log.Fatal("Event component is invalid.");
-                return;
-            }
-
-        }
-
-        private System.Collections.Generic.Dictionary<string, IDataTable> m_Tables = new System.Collections.Generic.Dictionary<string, IDataTable>();
- 
-        public System.Collections.Generic.IEnumerable<IDataTable> DataTables => m_Tables.Values;
-
-        public BaseDataTable<T> GetDataTable<T>(string tableName)
-        {
-            bool isExist = m_Tables.TryGetValue(tableName, out var value) ;
-            if (isExist)
-            {
-                return (BaseDataTable<T>)value;
-            }
-    
             return default;
         }
-        /*
-        /// <summary>
-        /// 读取全局配置。
-        /// </summary>
-        /// <param name="configAssetName">全局配置资源名称。</param>
-        public void ReadData(string configAssetName)
-        {
-            m_ConfigManager.ReadData(configAssetName);
-        }
-
-        /// <summary>
-        /// 读取全局配置。
-        /// </summary>
-        /// <param name="configAssetName">全局配置资源名称。</param>
-        /// <param name="priority">加载全局配置资源的优先级。</param>
-        public void ReadData(string configAssetName, int priority)
-        {
-            m_ConfigManager.ReadData(configAssetName, priority);
-        }
-
-        /// <summary>
-        /// 读取全局配置。
-        /// </summary>
-        /// <param name="configAssetName">全局配置资源名称。</param>
-        /// <param name="userData">用户自定义数据。</param>
-        public void ReadData(string configAssetName, object userData)
-        {
-            m_ConfigManager.ReadData(configAssetName, userData);
-        }
-
-        /// <summary>
-        /// 读取全局配置。
-        /// </summary>
-        /// <param name="configAssetName">全局配置资源名称。</param>
-        /// <param name="priority">加载全局配置资源的优先级。</param>
-        /// <param name="userData">用户自定义数据。</param>
-        public void ReadData(string configAssetName, int priority, object userData)
-        {
-            m_ConfigManager.ReadData(configAssetName, priority, userData);
-        }
-
-        /// <summary>
-        /// 解析全局配置。
-        /// </summary>
-        /// <param name="configString">要解析的全局配置字符串。</param>
-        /// <returns>是否解析全局配置成功。</returns>
-        public bool ParseData(string configString)
-        {
-            return m_ConfigManager.ParseData(configString);
-        }
-
-        /// <summary>
-        /// 解析全局配置。
-        /// </summary>
-        /// <param name="configString">要解析的全局配置字符串。</param>
-        /// <param name="userData">用户自定义数据。</param>
-        /// <returns>是否解析全局配置成功。</returns>
-        public bool ParseData(string configString, object userData)
-        {
-            return m_ConfigManager.ParseData(configString, userData);
-        }
-
-        /// <summary>
-        /// 解析全局配置。
-        /// </summary>
-        /// <param name="configBytes">要解析的全局配置二进制流。</param>
-        /// <returns>是否解析全局配置成功。</returns>
-        public bool ParseData(byte[] configBytes)
-        {
-            return m_ConfigManager.ParseData(configBytes);
-        }
-
-        /// <summary>
-        /// 解析全局配置。
-        /// </summary>
-        /// <param name="configBytes">要解析的全局配置二进制流。</param>
-        /// <param name="userData">用户自定义数据。</param>
-        /// <returns>是否解析全局配置成功。</returns>
-        public bool ParseData(byte[] configBytes, object userData)
-        {
-            return m_ConfigManager.ParseData(configBytes, userData);
-        }
-
-        /// <summary>
-        /// 解析全局配置。
-        /// </summary>
-        /// <param name="configBytes">要解析的全局配置二进制流。</param>
-        /// <param name="startIndex">全局配置二进制流的起始位置。</param>
-        /// <param name="length">全局配置二进制流的长度。</param>
-        /// <returns>是否解析全局配置成功。</returns>
-        public bool ParseData(byte[] configBytes, int startIndex, int length)
-        {
-            return m_ConfigManager.ParseData(configBytes, startIndex, length);
-        }
-
-        /// <summary>
-        /// 解析全局配置。
-        /// </summary>
-        /// <param name="configBytes">要解析的全局配置二进制流。</param>
-        /// <param name="startIndex">全局配置二进制流的起始位置。</param>
-        /// <param name="length">全局配置二进制流的长度。</param>
-        /// <param name="userData">用户自定义数据。</param>
-        /// <returns>是否解析全局配置成功。</returns>
-        public bool ParseData(byte[] configBytes, int startIndex, int length, object userData)
-        {
-            return m_ConfigManager.ParseData(configBytes, startIndex, length, userData);
-        }
-        */
 
         /// <summary>
         /// 检查是否存在指定全局配置项。
         /// </summary>
-        /// <param name="configName">要检查全局配置项的名称。</param>
         /// <returns>指定的全局配置项是否存在。</returns>
-        public bool HasConfig(string configName)
+        public bool HasConfig<T>() where T : IDataTable
         {
+            var configName = typeof(T).Name;
             return m_ConfigManager.HasConfig(configName);
-        }
-
-        /// <summary>
-        /// 从指定全局配置项中读取布尔值。
-        /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <returns>读取的布尔值。</returns>
-        public bool GetBool(string configName)
-        {
-            return m_ConfigManager.GetBool(configName);
-        }
-
-        /// <summary>
-        /// 从指定全局配置项中读取布尔值。
-        /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <param name="defaultValue">当指定的全局配置项不存在时，返回此默认值。</param>
-        /// <returns>读取的布尔值。</returns>
-        public bool GetBool(string configName, bool defaultValue)
-        {
-            return m_ConfigManager.GetBool(configName, defaultValue);
-        }
-
-        /// <summary>
-        /// 从指定全局配置项中读取整数值。
-        /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <returns>读取的整数值。</returns>
-        public int GetInt(string configName)
-        {
-            return m_ConfigManager.GetInt(configName);
-        }
-
-        /// <summary>
-        /// 从指定全局配置项中读取整数值。
-        /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <param name="defaultValue">当指定的全局配置项不存在时，返回此默认值。</param>
-        /// <returns>读取的整数值。</returns>
-        public int GetInt(string configName, int defaultValue)
-        {
-            return m_ConfigManager.GetInt(configName, defaultValue);
-        }
-
-        /// <summary>
-        /// 从指定全局配置项中读取浮点数值。
-        /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <returns>读取的浮点数值。</returns>
-        public float GetFloat(string configName)
-        {
-            return m_ConfigManager.GetFloat(configName);
-        }
-
-        /// <summary>
-        /// 从指定全局配置项中读取浮点数值。
-        /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <param name="defaultValue">当指定的全局配置项不存在时，返回此默认值。</param>
-        /// <returns>读取的浮点数值。</returns>
-        public float GetFloat(string configName, float defaultValue)
-        {
-            return m_ConfigManager.GetFloat(configName, defaultValue);
-        }
-
-        /// <summary>
-        /// 从指定全局配置项中读取字符串值。
-        /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <returns>读取的字符串值。</returns>
-        public string GetString(string configName)
-        {
-            return m_ConfigManager.GetString(configName);
-        }
-
-        /// <summary>
-        /// 从指定全局配置项中读取字符串值。
-        /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <param name="defaultValue">当指定的全局配置项不存在时，返回此默认值。</param>
-        /// <returns>读取的字符串值。</returns>
-        public string GetString(string configName, string defaultValue)
-        {
-            return m_ConfigManager.GetString(configName, defaultValue);
-        }
-
-        /// <summary>
-        /// 增加指定全局配置项。
-        /// </summary>
-        /// <param name="configName">要增加全局配置项的名称。</param>
-        /// <param name="boolValue">全局配置项布尔值。</param>
-        /// <param name="intValue">全局配置项整数值。</param>
-        /// <param name="floatValue">全局配置项浮点数值。</param>
-        /// <param name="stringValue">全局配置项字符串值。</param>
-        /// <returns>是否增加全局配置项成功。</returns>
-        public bool AddConfig(string configName, bool boolValue, int intValue, float floatValue, string stringValue)
-        {
-            return m_ConfigManager.AddConfig(configName, boolValue, intValue, floatValue, stringValue);
         }
 
         /// <summary>
         /// 移除指定全局配置项。
         /// </summary>
-        /// <param name="configName">要移除全局配置项的名称。</param>
         /// <returns>是否移除全局配置项成功。</returns>
-        public bool RemoveConfig(string configName)
+        public bool RemoveConfig<T>() where T : IDataTable
         {
+            var configName = typeof(T).Name;
             return m_ConfigManager.RemoveConfig(configName);
         }
 
@@ -314,25 +92,14 @@ namespace GameFrameX.Config.Runtime
             m_ConfigManager.RemoveAllConfigs();
         }
 
-        /*
-        private void OnReadDataSuccess(object sender, ReadDataSuccessEventArgs e)
+        /// <summary>
+        /// 增加
+        /// </summary>
+        /// <param name="configName"></param>
+        /// <param name="dataTable"></param>
+        public void Add(string configName, IDataTable dataTable)
         {
-            m_EventComponent.Fire(this, LoadConfigSuccessEventArgs.Create(e.DataAssetName, e.Duration, e.UserData));
-        }
-
-        private void OnReadDataFailure(object sender, ReadDataFailureEventArgs e)
-        {
-            Log.Warning("Load config failure, asset name '{0}', error message '{1}'.", e.DataAssetName, e.ErrorMessage);
-            m_EventComponent.Fire(this, LoadConfigFailureEventArgs.Create(e.DataAssetName, e.ErrorMessage, e.UserData));
-        }
-
-        private void OnReadDataUpdate(object sender, ReadDataUpdateEventArgs e)
-        {
-            m_EventComponent.Fire(this, LoadConfigUpdateEventArgs.Create(e.DataAssetName, e.Progress, e.UserData));
-        }*/
-        public void Add(string tbBlackboardName, IDataTable dataTable)
-        {
-            
+            m_ConfigManager.AddConfig(configName, dataTable);
         }
     }
 }

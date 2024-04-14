@@ -10,8 +10,6 @@ namespace GameFrameX.Config.Runtime
         private void Start()
         {
             _ = typeof(ConfigManager);
-            _ = typeof(IConfigData);
-            _ = typeof(IConfigHelper);
             _ = typeof(IConfigManager);
             _ = typeof(LoadConfigFailureEventArgs);
             _ = typeof(LoadConfigSuccessEventArgs);
