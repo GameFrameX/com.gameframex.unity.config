@@ -19,6 +19,11 @@ namespace GameFrameX.Config.Runtime
         {
             LongDataMaps.TryGetValue(id, out T value);
             return value;
+        }       
+        public T Get(long id)
+        {
+            LongDataMaps.TryGetValue(id, out T value);
+            return value;
         }
 
         public T Get(string id)
@@ -28,6 +33,8 @@ namespace GameFrameX.Config.Runtime
         }
 
         public T this[int id] => Get(id);
+        
+        public T this[long id] => Get(id);
 
         public T this[string id] => Get(id);
 

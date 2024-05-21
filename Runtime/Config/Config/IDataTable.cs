@@ -33,6 +33,13 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id"></param>
         /// <returns></returns>
         T Get(int id);
+        
+        /// <summary>
+        /// 根据ID获取对象
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        T Get(long id);
 
         /// <summary>
         /// 根据ID获取对象
@@ -47,6 +54,13 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id"></param>
         /// <returns></returns>
         T this[int id] { get; }
+        
+        /// <summary>
+        /// 根据ID获取对象
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        T this[long id] { get; }
 
         /// <summary>
         /// 根据ID获取对象
@@ -54,7 +68,6 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id"></param>
         /// <returns></returns>
         T this[string id] { get; }
-
 
         /// <summary>
         /// 获取数据表中第一个对象
