@@ -7,7 +7,7 @@ using UnityEngine.Scripting;
 namespace GameFrameX.Config.Runtime
 {
     [Preserve]
-    public abstract class BaseDataTable<T> : IDataTable<T>
+    public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     {
         protected readonly SortedDictionary<long, T> LongDataMaps = new SortedDictionary<long, T>();
         protected readonly SortedDictionary<string, T> StringDataMaps = new SortedDictionary<string, T>();
@@ -44,14 +44,64 @@ namespace GameFrameX.Config.Runtime
             return DataList.ToArray();
         }
 
+        public List<T> ToList()
+        {
+            return DataList.ToList();
+        }
+
         public T Find(Func<T, bool> func)
         {
             return DataList.FirstOrDefault(func);
         }
 
-        public T[] FindList(Func<T, bool> func)
+        public T[] FindListArray(Func<T, bool> func)
         {
             return DataList.Where(func).ToArray();
+        }
+
+        public List<T> FindList(Func<T, bool> func)
+        {
+            return DataList.Where(func).ToList();
+        }
+
+        public void ForEach(Action<T> func)
+        {
+            DataList.ForEach(func);
+        }
+
+        public TK Max<TK>(Func<T, TK> func)
+        {
+            return DataList.Max(func);
+        }
+
+        public TK Min<TK>(Func<T, TK> func)
+        {
+            return DataList.Min(func);
+        }
+
+        public int Sum(Func<T, int> func)
+        {
+            return DataList.Sum(func);
+        }
+
+        public long Sum(Func<T, long> func)
+        {
+            return DataList.Sum(func);
+        }
+
+        public float Sum(Func<T, float> func)
+        {
+            return DataList.Sum(func);
+        }
+
+        public double Sum(Func<T, double> func)
+        {
+            return DataList.Sum(func);
+        }
+
+        public decimal Sum(Func<T, decimal> func)
+        {
+            return DataList.Sum(func);
         }
     }
 }

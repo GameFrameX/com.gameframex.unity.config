@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using UnityEngine.Scripting;
 
 namespace GameFrameX.Config.Runtime
@@ -22,7 +25,7 @@ namespace GameFrameX.Config.Runtime
     /// 数据表基础接口
     /// </summary>
     [Preserve]
-    public interface IDataTable<out T> : IDataTable
+    public interface IDataTable<T> : IDataTable where T : class
     {
         /// <summary>
         /// 根据ID获取对象
@@ -78,17 +81,86 @@ namespace GameFrameX.Config.Runtime
         T[] ToArray();
 
         /// <summary>
+        /// 获取数据表中所有对象
+        /// </summary>
+        /// <returns></returns>
+        List<T> ToList();
+
+        /// <summary>
         /// 根据条件查找
         /// </summary>
-        /// <param name="func"></param>
+        /// <param name="func">查询条件</param>
         /// <returns></returns>
         T Find(System.Func<T, bool> func);
 
         /// <summary>
         /// 根据条件查找
         /// </summary>
-        /// <param name="func"></param>
+        /// <param name="func">查询条件</param>
         /// <returns></returns>
-        T[] FindList(System.Func<T, bool> func);
+        T[] FindListArray(System.Func<T, bool> func);
+
+        /// <summary>
+        /// 根据条件查找
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <returns></returns>
+        List<T> FindList(Func<T, bool> func);
+
+        /// <summary>
+        /// 遍历
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        void ForEach(Action<T> func);
+
+        /// <summary>
+        /// 取最大值
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <returns></returns>
+        TK Max<TK>(Func<T, TK> func);
+
+        /// <summary>
+        /// 取最小值
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <typeparam name="TK">返回值类型</typeparam>
+        /// <returns></returns>
+        TK Min<TK>(Func<T, TK> func);
+
+        /// <summary>
+        /// 求和
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <returns></returns>
+        int Sum(Func<T, int> func);
+
+        /// <summary>
+        /// 求和
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <returns></returns>
+        long Sum(Func<T, long> func);
+
+        /// <summary>
+        /// 求和
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <returns></returns>
+        float Sum(Func<T, float> func);
+
+        /// <summary>
+        /// 求和
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <returns></returns>
+        double Sum(Func<T, double> func);
+
+        /// <summary>
+        /// 求和
+        /// </summary>
+        /// <param name="func">查询条件</param>
+        /// <returns></returns>
+        decimal Sum(Func<T, decimal> func);
     }
 }
