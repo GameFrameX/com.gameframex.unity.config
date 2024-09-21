@@ -33,7 +33,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         protected override void Awake()
         {
-            ImplementationComponentType = Type.GetType(componentType);
+            ImplementationComponentType = Utility.Assembly.GetType(componentType);
             InterfaceComponentType = typeof(IConfigManager);
             base.Awake();
             m_ConfigManager = GameFrameworkEntry.GetModule<IConfigManager>();
