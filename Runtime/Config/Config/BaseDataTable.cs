@@ -19,7 +19,8 @@ namespace GameFrameX.Config.Runtime
         {
             LongDataMaps.TryGetValue(id, out T value);
             return value;
-        }       
+        }
+
         public T Get(long id)
         {
             LongDataMaps.TryGetValue(id, out T value);
@@ -32,19 +33,38 @@ namespace GameFrameX.Config.Runtime
             return value;
         }
 
-        public T this[int id] => Get(id);
-        
-        public T this[long id] => Get(id);
+        public T this[int index]
+        {
+            get
+            {
+                if (index >= Count || index < 0)
+                {
+                    throw new IndexOutOfRangeException(nameof(index));
+                }
 
-        public T this[string id] => Get(id);
+                return DataList[index];
+            }
+        }
 
-        public int Count => Math.Max(LongDataMaps.Count, StringDataMaps.Count);
+        public int Count
+        {
+            get { return Math.Max(LongDataMaps.Count, StringDataMaps.Count); }
+        }
 
-        public T FirstOrDefault => DataList.FirstOrDefault();
+        public T FirstOrDefault
+        {
+            get { return DataList.FirstOrDefault(); }
+        }
 
-        public T LastOrDefault => DataList.LastOrDefault();
+        public T LastOrDefault
+        {
+            get { return DataList.LastOrDefault(); }
+        }
 
-        public T[] All => DataList.ToArray();
+        public T[] All
+        {
+            get { return DataList.ToArray(); }
+        }
 
         public T[] ToArray()
         {
