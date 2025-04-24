@@ -6,6 +6,7 @@
 //------------------------------------------------------------
 
 using System;
+using System.Collections.Concurrent;
 using GameFrameX.Runtime;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace GameFrameX.Config.Runtime
     public sealed class ConfigComponent : GameFrameworkComponent
     {
         private IConfigManager m_ConfigManager = null;
+        private ConcurrentDictionary<Type, string> m_ConfigNameTypeMap = new ConcurrentDictionary<Type, string>();
 
         /// <summary>
         /// 获取全局配置项数量。
@@ -45,6 +47,24 @@ namespace GameFrameX.Config.Runtime
         }
 
         /// <summary>
+        /// 获取指定类型的全局配置项名称。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>返回类型名称</returns>
+        private string GetTypeName<T>()
+        {
+            if (m_ConfigNameTypeMap.TryGetValue(typeof(T), out var configName))
+            {
+                return configName;
+            }
+
+            configName = typeof(T).Name;
+            m_ConfigNameTypeMap.TryAdd(typeof(T), configName);
+
+            return configName;
+        }
+
+        /// <summary>
         /// 获取指定全局配置项。
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -53,7 +73,7 @@ namespace GameFrameX.Config.Runtime
         {
             if (HasConfig<T>())
             {
-                var configName = typeof(T).Name;
+                var configName = GetTypeName<T>();
                 var config = m_ConfigManager.GetConfig(configName);
                 if (config != null)
                 {
@@ -70,7 +90,7 @@ namespace GameFrameX.Config.Runtime
         /// <returns>指定的全局配置项是否存在。</returns>
         public bool HasConfig<T>() where T : IDataTable
         {
-            var configName = typeof(T).Name;
+            var configName = GetTypeName<T>();
             return m_ConfigManager.HasConfig(configName);
         }
 
@@ -80,7 +100,7 @@ namespace GameFrameX.Config.Runtime
         /// <returns>是否移除全局配置项成功。</returns>
         public bool RemoveConfig<T>() where T : IDataTable
         {
-            var configName = typeof(T).Name;
+            var configName = GetTypeName<T>();
             return m_ConfigManager.RemoveConfig(configName);
         }
 
