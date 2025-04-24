@@ -35,6 +35,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         protected override void Awake()
         {
+            m_ConfigNameTypeMap.Clear();
             ImplementationComponentType = Utility.Assembly.GetType(componentType);
             InterfaceComponentType = typeof(IConfigManager);
             base.Awake();
@@ -109,6 +110,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         public void RemoveAllConfigs()
         {
+            m_ConfigNameTypeMap.Clear();
             m_ConfigManager.RemoveAllConfigs();
         }
 
