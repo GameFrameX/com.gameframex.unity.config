@@ -33,6 +33,21 @@ namespace GameFrameX.Config.Runtime
             return value;
         }
 
+        public bool TryGet(int id, out T value)
+        {
+            return LongDataMaps.TryGetValue(id, out value);
+        }
+
+        public bool TryGet(long id, out T value)
+        {
+            return LongDataMaps.TryGetValue(id, out value);
+        }
+
+        public bool TryGet(string id, out T value)
+        {
+            return StringDataMaps.TryGetValue(id, out value);
+        }
+
         public T this[int index]
         {
             get

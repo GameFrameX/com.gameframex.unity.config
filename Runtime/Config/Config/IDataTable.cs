@@ -49,6 +49,30 @@ namespace GameFrameX.Config.Runtime
         T Get(string id);
 
         /// <summary>
+        /// 尝试根据整数ID获取对象
+        /// </summary>
+        /// <param name="id">要获取的对象的整数ID</param>
+        /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+        /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+        bool TryGet(int id, out T value);
+
+        /// <summary>
+        /// 尝试根据长整数ID获取对象
+        /// </summary>
+        /// <param name="id">要获取的对象的长整数ID</param>
+        /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+        /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+        bool TryGet(long id, out T value);
+
+        /// <summary>
+        /// 尝试根据字符串ID获取对象
+        /// </summary>
+        /// <param name="id">要获取的对象的字符串ID</param>
+        /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+        /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+        bool TryGet(string id, out T value);
+
+        /// <summary>
         /// 根据列表索引获取对象
         /// </summary>
         /// <param name="index">索引值</param>
