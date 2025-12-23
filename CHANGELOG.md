@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/gameframex/com.gameframex.unity.config/compare/1.0.6...1.1.0) (2025-12-23)
+
+
+### Features
+
+* **数据表:** 添加TryGet方法以安全获取数据 ([b174c47](https://github.com/gameframex/com.gameframex.unity.config/commit/b174c47cfceb42a543fe6dea6c8b581fb368160c))
+
 # Changelog
 
 ## [1.0.6](https://github.com/GameFrameX/com.gameframex.unity.config/tree/1.0.6) (2025-06-01)
