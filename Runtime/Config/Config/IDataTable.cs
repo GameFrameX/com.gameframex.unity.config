@@ -191,15 +191,15 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">查询条件</param>
         /// <returns></returns>
-        TK Max<TK>(Func<T, TK> func);
+        Tk Max<Tk>(Func<T, Tk> func);
 
         /// <summary>
         /// 取最小值
         /// </summary>
         /// <param name="func">查询条件</param>
-        /// <typeparam name="TK">返回值类型</typeparam>
+        /// <typeparam name="Tk">返回值类型</typeparam>
         /// <returns></returns>
-        TK Min<TK>(Func<T, TK> func);
+        Tk Min<Tk>(Func<T, Tk> func);
 
         /// <summary>
         /// 求和
