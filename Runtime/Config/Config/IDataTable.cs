@@ -132,108 +132,109 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取数据表中第一个对象
         /// </summary>
-        /// <returns></returns>
+        /// <returns>如果数据表为空，则返回 null；否则返回第一个对象</returns>
         T FirstOrDefault { get; }
 
         /// <summary>
         /// 获取数据表中最后一个对象
         /// </summary>
-        /// <returns></returns>
+        /// <returns>如果数据表为空，则返回 null；否则返回最后一个对象</returns>
         T LastOrDefault { get; }
 
         /// <summary>
         /// 获取数据表中所有对象
         /// </summary>
-        /// <returns></returns>
+        /// <returns>包含数据表中所有对象的数组</returns>
         T[] All { get; }
 
         /// <summary>
         /// 获取数据表中所有对象
         /// </summary>
-        /// <returns></returns>
+        /// <returns>包含数据表中所有对象的新数组</returns>
         T[] ToArray();
 
         /// <summary>
         /// 获取数据表中所有对象
         /// </summary>
-        /// <returns></returns>
+        /// <returns>包含数据表中所有对象的新列表</returns>
         List<T> ToList();
 
         /// <summary>
-        /// 根据条件查找
+        /// 根据条件查找第一个匹配的对象
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
+        /// <param name="func">用于定义匹配条件的函数</param>
+        /// <returns>如果找到匹配的对象，则返回该对象；否则返回 null</returns>
         T Find(System.Func<T, bool> func);
 
         /// <summary>
-        /// 根据条件查找
+        /// 根据条件查找所有匹配的对象
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
+        /// <param name="func">用于定义匹配条件的函数</param>
+        /// <returns>包含所有匹配对象的数组</returns>
         T[] FindListArray(System.Func<T, bool> func);
 
         /// <summary>
-        /// 根据条件查找
+        /// 根据条件查找所有匹配的对象
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
+        /// <param name="func">用于定义匹配条件的函数</param>
+        /// <returns>包含所有匹配对象的列表</returns>
         List<T> FindList(Func<T, bool> func);
 
         /// <summary>
-        /// 遍历
+        /// 对数据表中的每个元素执行指定的操作
         /// </summary>
-        /// <param name="func">查询条件</param>
+        /// <param name="func">要对每个元素执行的操作</param>
         void ForEach(Action<T> func);
 
         /// <summary>
-        /// 取最大值
+        /// 获取数据表中指定属性的最大值
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
-        Tk Max<Tk>(Func<T, Tk> func);
+        /// <param name="func">用于获取比较值的函数</param>
+        /// <typeparam name="Tk">比较值的类型，必须实现 IComparable 接口</typeparam>
+        /// <returns>指定属性的最大值</returns>
+        Tk Max<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>;
 
         /// <summary>
-        /// 取最小值
+        /// 获取数据表中指定属性的最小值
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <typeparam name="Tk">返回值类型</typeparam>
-        /// <returns></returns>
-        Tk Min<Tk>(Func<T, Tk> func);
+        /// <param name="func">用于获取比较值的函数</param>
+        /// <typeparam name="Tk">比较值的类型，必须实现 IComparable 接口</typeparam>
+        /// <returns>指定属性的最小值</returns>
+        Tk Min<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>;
 
         /// <summary>
-        /// 求和
+        /// 计算数据表中指定属性的总和
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
+        /// <param name="func">用于获取求和值的函数</param>
+        /// <returns>指定属性的总和</returns>
         int Sum(Func<T, int> func);
 
         /// <summary>
-        /// 求和
+        /// 计算数据表中指定属性的总和
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
+        /// <param name="func">用于获取求和值的函数</param>
+        /// <returns>指定属性的总和</returns>
         long Sum(Func<T, long> func);
 
         /// <summary>
-        /// 求和
+        /// 计算数据表中指定属性的总和
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
+        /// <param name="func">用于获取求和值的函数</param>
+        /// <returns>指定属性的总和</returns>
         float Sum(Func<T, float> func);
 
         /// <summary>
-        /// 求和
+        /// 计算数据表中指定属性的总和
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
+        /// <param name="func">用于获取求和值的函数</param>
+        /// <returns>指定属性的总和</returns>
         double Sum(Func<T, double> func);
 
         /// <summary>
-        /// 求和
+        /// 计算数据表中指定属性的总和
         /// </summary>
-        /// <param name="func">查询条件</param>
-        /// <returns></returns>
+        /// <param name="func">用于获取求和值的函数</param>
+        /// <returns>指定属性的总和</returns>
         decimal Sum(Func<T, decimal> func);
     }
 }
