@@ -152,12 +152,12 @@ namespace GameFrameX.Config.Runtime
             DataList.ForEach(func);
         }
 
-        public TK Max<TK>(Func<T, TK> func)
+        public Tk Max<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>
         {
             return DataList.Max(func);
         }
 
-        public TK Min<TK>(Func<T, TK> func)
+        public Tk Min<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>
         {
             return DataList.Min(func);
         }
