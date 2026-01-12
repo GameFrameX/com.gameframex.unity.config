@@ -62,6 +62,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Obsolete("请使用TryGet方法")]
         T Get(int id);
 
         /// <summary>
@@ -69,6 +70,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Obsolete("请使用TryGet方法")]
         T Get(long id);
 
         /// <summary>
@@ -76,6 +78,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Obsolete("请使用TryGet方法")]
         T Get(string id);
 
         /// <summary>
