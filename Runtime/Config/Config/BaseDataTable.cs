@@ -46,18 +46,21 @@ namespace GameFrameX.Config.Runtime
         protected readonly List<T> DataList = new List<T>();
         public abstract Task LoadAsync();
 
+        [Obsolete("请使用TryGet方法")]
         public T Get(int id)
         {
             LongDataMaps.TryGetValue(id, out T value);
             return value;
         }
 
+        [Obsolete("请使用TryGet方法")]
         public T Get(long id)
         {
             LongDataMaps.TryGetValue(id, out T value);
             return value;
         }
 
+        [Obsolete("请使用TryGet方法")]
         public T Get(string id)
         {
             StringDataMaps.TryGetValue(id, out T value);
