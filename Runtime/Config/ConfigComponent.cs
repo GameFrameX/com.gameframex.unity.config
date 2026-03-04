@@ -41,7 +41,7 @@ namespace GameFrameX.Config.Runtime
     /// 全局配置组件。
     /// </summary>
     [DisallowMultipleComponent]
-    [AddComponentMenu("Game Framework/Config")]
+    [AddComponentMenu("GameFrameX/Config")]
     public sealed class ConfigComponent : GameFrameworkComponent
     {
         private IConfigManager m_ConfigManager = null;
