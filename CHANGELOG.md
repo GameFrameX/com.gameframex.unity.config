@@ -1,3 +1,18 @@
+## [1.1.1](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.0...1.1.1) (2026-03-04)
+
+
+### Bug Fixes
+
+* **config:** 为 BaseDataTable 中的公共方法添加 [Preserve] 属性 ([34e3285](https://github.com/gameframex/com.gameframex.unity.config/commit/34e32857e217c45e326d802719f6b266cf3896bd))
+* **config:** 为IDataTable接口添加Preserve属性防止代码裁剪 ([e61fdab](https://github.com/gameframex/com.gameframex.unity.config/commit/e61fdab74d66d0bcbf3d4264de15c84a6fcc2748))
+* 为配置组件添加Preserve特性防止代码剥离 ([3a7dbb5](https://github.com/gameframex/com.gameframex.unity.config/commit/3a7dbb573e5168fcc568c6d28fca31b9981c13d9))
+
+
+### Performance Improvements
+
+* **Config:** 优化数据表Count属性的性能 ([6e743fb](https://github.com/gameframex/com.gameframex.unity.config/commit/6e743fb144d61145d89537fbfdf205bd69e3fe89))
+* **config:** 缓存FirstOrDefault和LastOrDefault结果以提升性能 ([f568979](https://github.com/gameframex/com.gameframex.unity.config/commit/f5689794dbf57649ba2ac14617f23e255a6eea96))
+
 # [1.1.0](https://github.com/gameframex/com.gameframex.unity.config/compare/1.0.6...1.1.0) (2025-12-23)
 
 
