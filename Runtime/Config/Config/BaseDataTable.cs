@@ -44,6 +44,10 @@ namespace GameFrameX.Config.Runtime
         protected readonly SortedDictionary<string, T> StringDataMaps = new SortedDictionary<string, T>();
 
         protected readonly List<T> DataList = new List<T>();
+        private int _cachedDataListCount = -1;
+        private bool _cacheInitialized;
+        private T _firstOrDefaultCache;
+        private T _lastOrDefaultCache;
         public abstract Task LoadAsync();
 
         [Obsolete("请使用TryGet方法")]
@@ -104,12 +108,20 @@ namespace GameFrameX.Config.Runtime
 
         public T FirstOrDefault
         {
-            get { return DataList.FirstOrDefault(); }
+            get
+            {
+                EnsureFirstLastCache();
+                return _firstOrDefaultCache;
+            }
         }
 
         public T LastOrDefault
         {
-            get { return DataList.LastOrDefault(); }
+            get
+            {
+                EnsureFirstLastCache();
+                return _lastOrDefaultCache;
+            }
         }
 
         public T[] All
@@ -180,6 +192,44 @@ namespace GameFrameX.Config.Runtime
         public decimal Sum(Func<T, decimal> func)
         {
             return DataList.Sum(func);
+        }
+
+        private void EnsureFirstLastCache()
+        {
+            if (_cacheInitialized && _cachedDataListCount == DataList.Count)
+            {
+                return;
+            }
+
+            _cacheInitialized = true;
+            _cachedDataListCount = DataList.Count;
+            _firstOrDefaultCache = null;
+            _lastOrDefaultCache = null;
+
+            if (DataList.Count == 0)
+            {
+                return;
+            }
+
+            for (var i = 0; i < DataList.Count; i++)
+            {
+                var value = DataList[i];
+                if (value != null)
+                {
+                    _firstOrDefaultCache = value;
+                    break;
+                }
+            }
+
+            for (var i = DataList.Count - 1; i >= 0; i--)
+            {
+                var value = DataList[i];
+                if (value != null)
+                {
+                    _lastOrDefaultCache = value;
+                    break;
+                }
+            }
         }
     }
 }
