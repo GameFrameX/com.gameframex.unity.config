@@ -33,6 +33,7 @@ using System;
 using System.Collections.Concurrent;
 using GameFrameX.Runtime;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace GameFrameX.Config.Runtime
 {
@@ -49,6 +50,7 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取全局配置项数量。
         /// </summary>
+        [Preserve]
         public int Count
         {
             get { return m_ConfigManager.Count; }
@@ -76,6 +78,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>返回类型名称</returns>
+        [Preserve]
         private string GetTypeName<T>()
         {
             if (m_ConfigNameTypeMap.TryGetValue(typeof(T), out var configName))
@@ -94,6 +97,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
+        [Preserve]
         public T GetConfig<T>() where T : IDataTable
         {
             if (HasConfig<T>())
@@ -113,6 +117,7 @@ namespace GameFrameX.Config.Runtime
         /// 检查是否存在指定全局配置项。
         /// </summary>
         /// <returns>指定的全局配置项是否存在。</returns>
+        [Preserve]
         public bool HasConfig<T>() where T : IDataTable
         {
             var configName = GetTypeName<T>();
@@ -123,6 +128,7 @@ namespace GameFrameX.Config.Runtime
         /// 移除指定全局配置项。
         /// </summary>
         /// <returns>是否移除全局配置项成功。</returns>
+        [Preserve]
         public bool RemoveConfig<T>() where T : IDataTable
         {
             var configName = GetTypeName<T>();
@@ -132,6 +138,7 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 清空所有全局配置项。
         /// </summary>
+        [Preserve]
         public void RemoveAllConfigs()
         {
             m_ConfigNameTypeMap.Clear();
@@ -143,6 +150,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="configName"></param>
         /// <param name="dataTable"></param>
+        [Preserve]
         public void Add(string configName, IDataTable dataTable)
         {
             m_ConfigManager.AddConfig(configName, dataTable);
