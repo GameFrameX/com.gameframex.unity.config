@@ -47,6 +47,8 @@ namespace GameFrameX.Config.Runtime
         private bool _cacheInitialized;
         private T _firstOrDefaultCache;
         private T _lastOrDefaultCache;
+        private bool _countCacheInitialized;
+        private int _countCache;
         public abstract Task LoadAsync();
 
         [Obsolete("请使用TryGet方法")]
@@ -102,7 +104,11 @@ namespace GameFrameX.Config.Runtime
 
         public int Count
         {
-            get { return Math.Max(LongDataMaps.Count, StringDataMaps.Count); }
+            get
+            {
+                EnsureCountCache();
+                return _countCache;
+            }
         }
 
         public T FirstOrDefault
@@ -232,6 +238,27 @@ namespace GameFrameX.Config.Runtime
                     break;
                 }
             }
+        }
+
+        /// <summary>
+        /// 确保数量缓存已初始化
+        /// </summary>
+        private void EnsureCountCache()
+        {
+            if (_countCacheInitialized)
+            {
+                return;
+            }
+
+            var count = Math.Max(LongDataMaps.Count, StringDataMaps.Count);
+            if (count == 0)
+            {
+                _countCache = 0;
+                return;
+            }
+
+            _countCache = count;
+            _countCacheInitialized = true;
         }
     }
 }
