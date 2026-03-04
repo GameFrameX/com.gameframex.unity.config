@@ -106,27 +106,24 @@ namespace GameFrameX.Config.Runtime
         bool TryGet(string id, out T value);
 
         /// <summary>
-        /// 根据整数索引获取数据表中的对象
+        /// 根据整数主键获取数据表中的对象
         /// </summary>
-        /// <param name="index">要获取的对象在数据表中的从零开始的整数索引</param>
-        /// <returns>位于指定索引位置的数据对象</returns>
-        /// <exception cref="ArgumentOutOfRangeException">当索引超出数据表范围时抛出</exception>
-        T this[int index] { get; }
+        /// <param name="id">要获取的对象的整数主键</param>
+        /// <returns>与指定主键关联的数据对象；如果找不到则返回 null</returns>
+        T this[int id] { get; }
 
         /// <summary>
-        /// 根据长整数索引获取数据表中的对象
+        /// 根据长整数主键获取数据表中的对象
         /// </summary>
-        /// <param name="id">要获取的对象在数据表中的长整数ID</param>
-        /// <returns>与指定ID关联的数据对象</returns>
-        /// <exception cref="ArgumentOutOfRangeException">当ID超出数据表范围时抛出</exception>
+        /// <param name="id">要获取的对象的长整数主键</param>
+        /// <returns>与指定主键关联的数据对象；如果找不到则返回 null</returns>
         T this[long id] { get; }
 
         /// <summary>
         /// 根据字符串键获取数据表中的对象
         /// </summary>
         /// <param name="id">要获取的对象在数据表中的字符串键</param>
-        /// <returns>与指定键关联的数据对象</returns>
-        /// <exception cref="KeyNotFoundException">当不存在具有指定键的对象时抛出</exception>
+        /// <returns>与指定键关联的数据对象；如果找不到则返回 null</returns>
         T this[string id] { get; }
 
         /// <summary>
