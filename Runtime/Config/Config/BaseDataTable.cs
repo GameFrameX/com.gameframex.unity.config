@@ -82,27 +82,19 @@ namespace GameFrameX.Config.Runtime
             return StringDataMaps.TryGetValue(id, out value);
         }
 
-        public T this[int index]
+        public T this[int id]
         {
-            get
-            {
-                if (index >= Count || index < 0)
-                {
-                    throw new IndexOutOfRangeException(nameof(index));
-                }
-
-                return DataList[index];
-            }
+            get { return TryGet(id, out var value) ? value : null; }
         }
 
         public T this[long id]
         {
-            get { return Get(id); }
+            get { return TryGet(id, out var value) ? value : null; }
         }
 
-        public T this[string index]
+        public T this[string id]
         {
-            get { return Get(index); }
+            get { return TryGet(id, out var value) ? value : null; }
         }
 
         public int Count
