@@ -44,7 +44,6 @@ namespace GameFrameX.Config.Runtime
         protected readonly SortedDictionary<string, T> StringDataMaps = new SortedDictionary<string, T>();
 
         protected readonly List<T> DataList = new List<T>();
-        private int _cachedDataListCount = -1;
         private bool _cacheInitialized;
         private T _firstOrDefaultCache;
         private T _lastOrDefaultCache;
@@ -194,15 +193,16 @@ namespace GameFrameX.Config.Runtime
             return DataList.Sum(func);
         }
 
+        /// <summary>
+        /// 确保首尾非空元素缓存已初始化
+        /// </summary>
         private void EnsureFirstLastCache()
         {
-            if (_cacheInitialized && _cachedDataListCount == DataList.Count)
+            if (_cacheInitialized)
             {
                 return;
             }
 
-            _cacheInitialized = true;
-            _cachedDataListCount = DataList.Count;
             _firstOrDefaultCache = null;
             _lastOrDefaultCache = null;
 
@@ -210,6 +210,8 @@ namespace GameFrameX.Config.Runtime
             {
                 return;
             }
+
+            _cacheInitialized = true;
 
             for (var i = 0; i < DataList.Count; i++)
             {
