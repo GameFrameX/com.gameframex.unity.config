@@ -36,18 +36,21 @@ using UnityEngine.Scripting;
 
 namespace GameFrameX.Config.Runtime
 {
+    [Preserve]
     public interface IDataTable
     {
         /// <summary>
         /// 异步加载
         /// </summary>
         /// <returns></returns>
+        [Preserve]
         Task LoadAsync();
 
         /// <summary>
         /// 获取数据表中对象的数量
         /// </summary>
         /// <returns></returns>
+        [Preserve]
         int Count { get; }
     }
 
@@ -63,6 +66,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id"></param>
         /// <returns></returns>
         [Obsolete("请使用TryGet方法")]
+        [Preserve]
         T Get(int id);
 
         /// <summary>
@@ -71,6 +75,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id"></param>
         /// <returns></returns>
         [Obsolete("请使用TryGet方法")]
+        [Preserve]
         T Get(long id);
 
         /// <summary>
@@ -79,6 +84,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id"></param>
         /// <returns></returns>
         [Obsolete("请使用TryGet方法")]
+        [Preserve]
         T Get(string id);
 
         /// <summary>
@@ -87,6 +93,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id">要获取的对象的整数ID</param>
         /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
         /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+        [Preserve]
         bool TryGet(int id, out T value);
 
         /// <summary>
@@ -95,6 +102,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id">要获取的对象的长整数ID</param>
         /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
         /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+        [Preserve]
         bool TryGet(long id, out T value);
 
         /// <summary>
@@ -103,6 +111,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id">要获取的对象的字符串ID</param>
         /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
         /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+        [Preserve]
         bool TryGet(string id, out T value);
 
         /// <summary>
@@ -110,6 +119,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="id">要获取的对象的整数主键</param>
         /// <returns>与指定主键关联的数据对象；如果找不到则返回 null</returns>
+        [Preserve]
         T this[int id] { get; }
 
         /// <summary>
@@ -117,6 +127,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="id">要获取的对象的长整数主键</param>
         /// <returns>与指定主键关联的数据对象；如果找不到则返回 null</returns>
+        [Preserve]
         T this[long id] { get; }
 
         /// <summary>
@@ -124,36 +135,42 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="id">要获取的对象在数据表中的字符串键</param>
         /// <returns>与指定键关联的数据对象；如果找不到则返回 null</returns>
+        [Preserve]
         T this[string id] { get; }
 
         /// <summary>
         /// 获取数据表中第一个对象
         /// </summary>
         /// <returns>如果数据表为空，则返回 null；否则返回第一个对象</returns>
+        [Preserve]
         T FirstOrDefault { get; }
 
         /// <summary>
         /// 获取数据表中最后一个对象
         /// </summary>
         /// <returns>如果数据表为空，则返回 null；否则返回最后一个对象</returns>
+        [Preserve]
         T LastOrDefault { get; }
 
         /// <summary>
         /// 获取数据表中所有对象
         /// </summary>
         /// <returns>包含数据表中所有对象的数组</returns>
+        [Preserve]
         T[] All { get; }
 
         /// <summary>
         /// 获取数据表中所有对象
         /// </summary>
         /// <returns>包含数据表中所有对象的新数组</returns>
+        [Preserve]
         T[] ToArray();
 
         /// <summary>
         /// 获取数据表中所有对象
         /// </summary>
         /// <returns>包含数据表中所有对象的新列表</returns>
+        [Preserve]
         List<T> ToList();
 
         /// <summary>
@@ -161,6 +178,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">用于定义匹配条件的函数</param>
         /// <returns>如果找到匹配的对象，则返回该对象；否则返回 null</returns>
+        [Preserve]
         T Find(System.Func<T, bool> func);
 
         /// <summary>
@@ -168,6 +186,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">用于定义匹配条件的函数</param>
         /// <returns>包含所有匹配对象的数组</returns>
+        [Preserve]
         T[] FindListArray(System.Func<T, bool> func);
 
         /// <summary>
@@ -175,12 +194,14 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">用于定义匹配条件的函数</param>
         /// <returns>包含所有匹配对象的列表</returns>
+        [Preserve]
         List<T> FindList(Func<T, bool> func);
 
         /// <summary>
         /// 对数据表中的每个元素执行指定的操作
         /// </summary>
         /// <param name="func">要对每个元素执行的操作</param>
+        [Preserve]
         void ForEach(Action<T> func);
 
         /// <summary>
@@ -189,6 +210,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="func">用于获取比较值的函数</param>
         /// <typeparam name="Tk">比较值的类型，必须实现 IComparable 接口</typeparam>
         /// <returns>指定属性的最大值</returns>
+        [Preserve]
         Tk Max<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>;
 
         /// <summary>
@@ -197,6 +219,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="func">用于获取比较值的函数</param>
         /// <typeparam name="Tk">比较值的类型，必须实现 IComparable 接口</typeparam>
         /// <returns>指定属性的最小值</returns>
+        [Preserve]
         Tk Min<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>;
 
         /// <summary>
@@ -204,6 +227,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">用于获取求和值的函数</param>
         /// <returns>指定属性的总和</returns>
+        [Preserve]
         int Sum(Func<T, int> func);
 
         /// <summary>
@@ -211,6 +235,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">用于获取求和值的函数</param>
         /// <returns>指定属性的总和</returns>
+        [Preserve]
         long Sum(Func<T, long> func);
 
         /// <summary>
@@ -218,6 +243,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">用于获取求和值的函数</param>
         /// <returns>指定属性的总和</returns>
+        [Preserve]
         float Sum(Func<T, float> func);
 
         /// <summary>
@@ -225,6 +251,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">用于获取求和值的函数</param>
         /// <returns>指定属性的总和</returns>
+        [Preserve]
         double Sum(Func<T, double> func);
 
         /// <summary>
@@ -232,6 +259,7 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <param name="func">用于获取求和值的函数</param>
         /// <returns>指定属性的总和</returns>
+        [Preserve]
         decimal Sum(Func<T, decimal> func);
     }
 }
