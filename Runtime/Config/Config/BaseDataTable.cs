@@ -49,8 +49,11 @@ namespace GameFrameX.Config.Runtime
         private T _lastOrDefaultCache;
         private bool _countCacheInitialized;
         private int _countCache;
+
+        [Preserve]
         public abstract Task LoadAsync();
 
+        [Preserve]
         [Obsolete("请使用TryGet方法")]
         public T Get(int id)
         {
@@ -58,6 +61,7 @@ namespace GameFrameX.Config.Runtime
             return value;
         }
 
+        [Preserve]
         [Obsolete("请使用TryGet方法")]
         public T Get(long id)
         {
@@ -65,6 +69,7 @@ namespace GameFrameX.Config.Runtime
             return value;
         }
 
+        [Preserve]
         [Obsolete("请使用TryGet方法")]
         public T Get(string id)
         {
@@ -72,36 +77,43 @@ namespace GameFrameX.Config.Runtime
             return value;
         }
 
+        [Preserve]
         public bool TryGet(int id, out T value)
         {
             return LongDataMaps.TryGetValue(id, out value);
         }
 
+        [Preserve]
         public bool TryGet(long id, out T value)
         {
             return LongDataMaps.TryGetValue(id, out value);
         }
 
+        [Preserve]
         public bool TryGet(string id, out T value)
         {
             return StringDataMaps.TryGetValue(id, out value);
         }
 
+        [Preserve]
         public T this[int id]
         {
             get { return TryGet(id, out var value) ? value : null; }
         }
 
+        [Preserve]
         public T this[long id]
         {
             get { return TryGet(id, out var value) ? value : null; }
         }
 
+        [Preserve]
         public T this[string id]
         {
             get { return TryGet(id, out var value) ? value : null; }
         }
 
+        [Preserve]
         public int Count
         {
             get
@@ -111,6 +123,7 @@ namespace GameFrameX.Config.Runtime
             }
         }
 
+        [Preserve]
         public T FirstOrDefault
         {
             get
@@ -120,6 +133,7 @@ namespace GameFrameX.Config.Runtime
             }
         }
 
+        [Preserve]
         public T LastOrDefault
         {
             get
@@ -129,71 +143,85 @@ namespace GameFrameX.Config.Runtime
             }
         }
 
+        [Preserve]
         public T[] All
         {
             get { return DataList.ToArray(); }
         }
 
+        [Preserve]
         public T[] ToArray()
         {
             return DataList.ToArray();
         }
 
+        [Preserve]
         public List<T> ToList()
         {
             return DataList.ToList();
         }
 
+        [Preserve]
         public T Find(Func<T, bool> func)
         {
             return DataList.FirstOrDefault(func);
         }
 
+        [Preserve]
         public T[] FindListArray(Func<T, bool> func)
         {
             return DataList.Where(func).ToArray();
         }
 
+        [Preserve]
         public List<T> FindList(Func<T, bool> func)
         {
             return DataList.Where(func).ToList();
         }
 
+        [Preserve]
         public void ForEach(Action<T> func)
         {
             DataList.ForEach(func);
         }
 
+        [Preserve]
         public Tk Max<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>
         {
             return DataList.Max(func);
         }
 
+        [Preserve]
         public Tk Min<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>
         {
             return DataList.Min(func);
         }
 
+        [Preserve]
         public int Sum(Func<T, int> func)
         {
             return DataList.Sum(func);
         }
 
+        [Preserve]
         public long Sum(Func<T, long> func)
         {
             return DataList.Sum(func);
         }
 
+        [Preserve]
         public float Sum(Func<T, float> func)
         {
             return DataList.Sum(func);
         }
 
+        [Preserve]
         public double Sum(Func<T, double> func)
         {
             return DataList.Sum(func);
         }
 
+        [Preserve]
         public decimal Sum(Func<T, decimal> func)
         {
             return DataList.Sum(func);
