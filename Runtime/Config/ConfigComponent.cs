@@ -40,6 +40,9 @@ namespace GameFrameX.Config.Runtime
     /// <summary>
     /// 全局配置组件。
     /// </summary>
+    /// <remarks>
+    /// Global configuration component.
+    /// </remarks>
     [DisallowMultipleComponent]
     [AddComponentMenu("GameFrameX/Config")]
     public sealed class ConfigComponent : GameFrameworkComponent
@@ -50,6 +53,10 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取全局配置项数量。
         /// </summary>
+        /// <remarks>
+        /// Gets the number of global configuration items.
+        /// </remarks>
+        /// <value>全局配置项数量 / Number of global configuration items</value>
         [Preserve]
         public int Count
         {
@@ -59,6 +66,9 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 游戏框架组件初始化。
         /// </summary>
+        /// <remarks>
+        /// Initializes the game framework component.
+        /// </remarks>
         protected override void Awake()
         {
             m_ConfigNameTypeMap.Clear();
@@ -76,8 +86,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取指定类型的全局配置项名称。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns>返回类型名称</returns>
+        /// <remarks>
+        /// Gets the name of the global configuration item for the specified type.
+        /// </remarks>
+        /// <typeparam name="T">配置项的类型 / Type of the configuration item</typeparam>
+        /// <returns>类型名称 / Type name</returns>
         [Preserve]
         private string GetTypeName<T>()
         {
@@ -95,8 +108,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取指定全局配置项。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <remarks>
+        /// Gets the specified global configuration item.
+        /// </remarks>
+        /// <typeparam name="T">配置项的类型，必须实现 <see cref="IDataTable"/> 接口 / Type of the configuration item, must implement <see cref="IDataTable"/></typeparam>
+        /// <returns>获取到的全局配置项；如果不存在则返回默认值 / The retrieved global configuration item; default value if not found</returns>
         [Preserve]
         public T GetConfig<T>() where T : IDataTable
         {
@@ -116,7 +132,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 检查是否存在指定全局配置项。
         /// </summary>
-        /// <returns>指定的全局配置项是否存在。</returns>
+        /// <remarks>
+        /// Checks whether the specified global configuration item exists.
+        /// </remarks>
+        /// <typeparam name="T">配置项的类型，必须实现 <see cref="IDataTable"/> 接口 / Type of the configuration item, must implement <see cref="IDataTable"/></typeparam>
+        /// <returns>指定的全局配置项是否存在 / Whether the specified global configuration item exists</returns>
         [Preserve]
         public bool HasConfig<T>() where T : IDataTable
         {
@@ -127,7 +147,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 移除指定全局配置项。
         /// </summary>
-        /// <returns>是否移除全局配置项成功。</returns>
+        /// <remarks>
+        /// Removes the specified global configuration item.
+        /// </remarks>
+        /// <typeparam name="T">配置项的类型，必须实现 <see cref="IDataTable"/> 接口 / Type of the configuration item, must implement <see cref="IDataTable"/></typeparam>
+        /// <returns>是否移除全局配置项成功 / Whether the global configuration item was removed successfully</returns>
         [Preserve]
         public bool RemoveConfig<T>() where T : IDataTable
         {
@@ -138,6 +162,9 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 清空所有全局配置项。
         /// </summary>
+        /// <remarks>
+        /// Removes all global configuration items.
+        /// </remarks>
         [Preserve]
         public void RemoveAllConfigs()
         {
@@ -146,10 +173,13 @@ namespace GameFrameX.Config.Runtime
         }
 
         /// <summary>
-        /// 增加
+        /// 增加指定全局配置项。
         /// </summary>
-        /// <param name="configName"></param>
-        /// <param name="dataTable"></param>
+        /// <remarks>
+        /// Adds the specified global configuration item.
+        /// </remarks>
+        /// <param name="configName">全局配置项的名称 / Name of the global configuration item</param>
+        /// <param name="dataTable">全局配置项的数据表实例 / Data table instance of the global configuration item</param>
         [Preserve]
         public void Add(string configName, IDataTable dataTable)
         {

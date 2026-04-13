@@ -34,45 +34,66 @@ namespace GameFrameX.Config.Runtime
     /// <summary>
     /// 全局配置管理器接口。
     /// </summary>
+    /// <remarks>
+    /// Global configuration manager interface.
+    /// </remarks>
     public interface IConfigManager
     {
         /// <summary>
         /// 获取全局配置项数量。
         /// </summary>
+        /// <remarks>
+        /// Gets the number of global configuration items.
+        /// </remarks>
+        /// <value>全局配置项数量 / Number of global configuration items</value>
         int Count { get; }
 
         /// <summary>
         /// 检查是否存在指定全局配置项。
         /// </summary>
-        /// <param name="configName">要检查全局配置项的名称。</param>
-        /// <returns>指定的全局配置项是否存在。</returns>
+        /// <remarks>
+        /// Checks whether the specified global configuration item exists.
+        /// </remarks>
+        /// <param name="configName">要检查全局配置项的名称 / Name of the global configuration item to check</param>
+        /// <returns>指定的全局配置项是否存在 / Whether the specified global configuration item exists</returns>
         bool HasConfig(string configName);
 
         /// <summary>
         /// 增加指定全局配置项。
         /// </summary>
-        /// <param name="configName">要增加全局配置项的名称。</param>
-        /// <param name="configValue">全局配置项的值。</param>
-        /// <returns>是否增加全局配置项成功。</returns>
+        /// <remarks>
+        /// Adds the specified global configuration item.
+        /// </remarks>
+        /// <param name="configName">要增加全局配置项的名称 / Name of the global configuration item to add</param>
+        /// <param name="configValue">全局配置项的值 / Value of the global configuration item</param>
         void AddConfig(string configName, IDataTable configValue);
 
         /// <summary>
         /// 移除指定全局配置项。
         /// </summary>
-        /// <param name="configName">要移除全局配置项的名称。</param>
-        /// <returns>是否移除全局配置项成功。</returns>
+        /// <remarks>
+        /// Removes the specified global configuration item.
+        /// </remarks>
+        /// <param name="configName">要移除全局配置项的名称 / Name of the global configuration item to remove</param>
+        /// <returns>是否移除全局配置项成功 / Whether the global configuration item was removed successfully</returns>
         bool RemoveConfig(string configName);
 
         /// <summary>
         /// 获取指定全局配置项。
         /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <returns>要获取全局配置项的全局配置项。</returns>
+        /// <remarks>
+        /// Gets the specified global configuration item.
+        /// </remarks>
+        /// <param name="configName">要获取全局配置项的名称 / Name of the global configuration item to get</param>
+        /// <returns>获取到的全局配置项；如果不存在则返回 null / The retrieved global configuration item; null if not found</returns>
         IDataTable GetConfig(string configName);
 
         /// <summary>
         /// 清空所有全局配置项。
         /// </summary>
+        /// <remarks>
+        /// Removes all global configuration items.
+        /// </remarks>
         void RemoveAllConfigs();
     }
 }

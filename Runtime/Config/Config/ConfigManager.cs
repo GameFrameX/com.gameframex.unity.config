@@ -40,6 +40,9 @@ namespace GameFrameX.Config.Runtime
     /// <summary>
     /// 全局配置管理器。
     /// </summary>
+    /// <remarks>
+    /// Global configuration manager.
+    /// </remarks>
     [UnityEngine.Scripting.Preserve]
     public sealed partial class ConfigManager : GameFrameworkModule, IConfigManager
     {
@@ -48,6 +51,9 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 初始化全局配置管理器的新实例。
         /// </summary>
+        /// <remarks>
+        /// Initializes a new instance of the global configuration manager.
+        /// </remarks>
         [UnityEngine.Scripting.Preserve]
         public ConfigManager()
         {
@@ -57,6 +63,10 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取全局配置项数量。
         /// </summary>
+        /// <remarks>
+        /// Gets the number of global configuration items.
+        /// </remarks>
+        /// <value>全局配置项数量 / Number of global configuration items</value>
         public int Count
         {
             get { return m_ConfigDatas.Count; }
@@ -66,8 +76,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 全局配置管理器轮询。
         /// </summary>
-        /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
-        /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
+        /// <remarks>
+        /// Global configuration manager tick.
+        /// </remarks>
+        /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位 / Logical elapsed time in seconds</param>
+        /// <param name="realElapseSeconds">真实流逝时间，以秒为单位 / Real elapsed time in seconds</param>
         protected override void Update(float elapseSeconds, float realElapseSeconds)
         {
         }
@@ -75,6 +88,9 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 关闭并清理全局配置管理器。
         /// </summary>
+        /// <remarks>
+        /// Shuts down and cleans up the global configuration manager.
+        /// </remarks>
         protected override void Shutdown()
         {
             RemoveAllConfigs();
@@ -84,8 +100,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 检查是否存在指定全局配置项。
         /// </summary>
-        /// <param name="configName">要检查全局配置项的名称。</param>
-        /// <returns>指定的全局配置项是否存在。</returns>
+        /// <remarks>
+        /// Checks whether the specified global configuration item exists.
+        /// </remarks>
+        /// <param name="configName">要检查全局配置项的名称 / Name of the global configuration item to check</param>
+        /// <returns>指定的全局配置项是否存在 / Whether the specified global configuration item exists</returns>
         [UnityEngine.Scripting.Preserve]
         public bool HasConfig(string configName)
         {
@@ -96,9 +115,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 增加指定全局配置项。
         /// </summary>
-        /// <param name="configName">要增加全局配置项的名称。</param>
-        /// <param name="configValue">全局配置项的值。</param>
-        /// <returns>是否增加全局配置项成功。</returns>
+        /// <remarks>
+        /// Adds the specified global configuration item.
+        /// </remarks>
+        /// <param name="configName">要增加全局配置项的名称 / Name of the global configuration item to add</param>
+        /// <param name="configValue">全局配置项的值 / Value of the global configuration item</param>
         [UnityEngine.Scripting.Preserve]
         public void AddConfig(string configName, IDataTable configValue)
         {
@@ -114,7 +135,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 移除指定全局配置项。
         /// </summary>
-        /// <param name="configName">要移除全局配置项的名称。</param>
+        /// <remarks>
+        /// Removes the specified global configuration item.
+        /// </remarks>
+        /// <param name="configName">要移除全局配置项的名称 / Name of the global configuration item to remove</param>
+        /// <returns>是否移除全局配置项成功 / Whether the global configuration item was removed successfully</returns>
         [UnityEngine.Scripting.Preserve]
         public bool RemoveConfig(string configName)
         {
@@ -129,8 +154,11 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取指定全局配置项。
         /// </summary>
-        /// <param name="configName">要获取全局配置项的名称。</param>
-        /// <returns>要获取全局配置项的全局配置项。</returns>
+        /// <remarks>
+        /// Gets the specified global configuration item.
+        /// </remarks>
+        /// <param name="configName">要获取全局配置项的名称 / Name of the global configuration item to get</param>
+        /// <returns>获取到的全局配置项；如果不存在则返回 null / The retrieved global configuration item; null if not found</returns>
         [UnityEngine.Scripting.Preserve]
         public IDataTable GetConfig(string configName)
         {
@@ -140,6 +168,9 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 清空所有全局配置项。
         /// </summary>
+        /// <remarks>
+        /// Removes all global configuration items.
+        /// </remarks>
         [UnityEngine.Scripting.Preserve]
         public void RemoveAllConfigs()
         {
