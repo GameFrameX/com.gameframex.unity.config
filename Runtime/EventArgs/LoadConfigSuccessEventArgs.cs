@@ -37,16 +37,26 @@ namespace GameFrameX.Config.Runtime
     /// <summary>
     /// 加载全局配置成功事件。
     /// </summary>
+    /// <remarks>
+    /// Event raised when loading global configuration succeeds.
+    /// </remarks>
     public sealed class LoadConfigSuccessEventArgs : GameEventArgs
     {
         /// <summary>
         /// 加载全局配置成功事件编号。
         /// </summary>
+        /// <remarks>
+        /// The event ID for load global configuration success.
+        /// </remarks>
+        /// <value>事件编号 / Event ID</value>
         public static readonly string EventId = typeof(LoadConfigSuccessEventArgs).FullName;
 
         /// <summary>
-        /// 初始化加载全局配置成功事件编号的新实例。
+        /// 初始化加载全局配置成功事件的新实例。
         /// </summary>
+        /// <remarks>
+        /// Initializes a new instance of the load global configuration success event.
+        /// </remarks>
         public LoadConfigSuccessEventArgs()
         {
             ConfigAssetName = null;
@@ -57,6 +67,10 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取加载全局配置成功事件编号。
         /// </summary>
+        /// <remarks>
+        /// Gets the event ID for load global configuration success.
+        /// </remarks>
+        /// <value>事件编号 / Event ID</value>
         public override string Id
         {
             get { return EventId; }
@@ -65,25 +79,40 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 获取全局配置资源名称。
         /// </summary>
+        /// <remarks>
+        /// Gets the global configuration asset name.
+        /// </remarks>
+        /// <value>全局配置资源名称 / Global configuration asset name</value>
         public string ConfigAssetName { get; private set; }
 
         /// <summary>
         /// 获取加载持续时间。
         /// </summary>
+        /// <remarks>
+        /// Gets the loading duration.
+        /// </remarks>
+        /// <value>加载持续时间，以秒为单位 / Loading duration in seconds</value>
         public float Duration { get; private set; }
 
         /// <summary>
         /// 获取用户自定义数据。
         /// </summary>
+        /// <remarks>
+        /// Gets the user custom data.
+        /// </remarks>
+        /// <value>用户自定义数据 / User custom data</value>
         public object UserData { get; private set; }
 
         /// <summary>
         /// 创建加载全局配置成功事件。
         /// </summary>
-        /// <param name="dataAssetName"></param>
-        /// <param name="duration"></param>
-        /// <param name="userData"></param>
-        /// <returns>创建的加载全局配置成功事件。</returns>
+        /// <remarks>
+        /// Creates a load global configuration success event.
+        /// </remarks>
+        /// <param name="dataAssetName">全局配置资源名称 / Global configuration asset name</param>
+        /// <param name="duration">加载持续时间，以秒为单位 / Loading duration in seconds</param>
+        /// <param name="userData">用户自定义数据 / User custom data</param>
+        /// <returns>创建的加载全局配置成功事件 / The created load global configuration success event</returns>
         public static LoadConfigSuccessEventArgs Create(string dataAssetName, float duration, object userData)
         {
             LoadConfigSuccessEventArgs loadConfigSuccessEventArgs = ReferencePool.Acquire<LoadConfigSuccessEventArgs>();
@@ -96,6 +125,9 @@ namespace GameFrameX.Config.Runtime
         /// <summary>
         /// 清理加载全局配置成功事件。
         /// </summary>
+        /// <remarks>
+        /// Clears the load global configuration success event.
+        /// </remarks>
         public override void Clear()
         {
             ConfigAssetName = null;
