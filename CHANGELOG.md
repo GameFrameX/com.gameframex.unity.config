@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.1...1.1.2) (2026-04-13)
+
+
+### Performance Improvements
+
+* **Config:** 优化数据表内存分配和查找性能 ([ac0ee7c](https://github.com/gameframex/com.gameframex.unity.config/commit/ac0ee7cbb80a72daef0e3cc65d206e2c1b664d2a))
+
 ## [1.1.1](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.0...1.1.1) (2026-03-04)
 
 
