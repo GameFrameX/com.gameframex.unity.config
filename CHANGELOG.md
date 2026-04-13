@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.2...1.1.3) (2026-04-13)
+
+
+### Bug Fixes
+
+* **Config:** 修复缓存初始化标志在空数据表时未设置的问题 ([9a801c2](https://github.com/gameframex/com.gameframex.unity.config/commit/9a801c2dff6352375123537546a1236cbe23526b))
+
 ## [1.1.2](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.1...1.1.2) (2026-04-13)
 
 
