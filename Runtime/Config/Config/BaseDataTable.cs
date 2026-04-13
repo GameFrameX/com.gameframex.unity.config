@@ -40,10 +40,11 @@ namespace GameFrameX.Config.Runtime
     [Preserve]
     public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     {
-        protected readonly SortedDictionary<long, T> LongDataMaps = new SortedDictionary<long, T>();
-        protected readonly SortedDictionary<string, T> StringDataMaps = new SortedDictionary<string, T>();
+        private const int DefaultSize = 4096;
+        protected readonly Dictionary<long, T> LongDataMaps = new Dictionary<long, T>(DefaultSize);
+        protected readonly Dictionary<string, T> StringDataMaps = new Dictionary<string, T>(DefaultSize);
 
-        protected readonly List<T> DataList = new List<T>();
+        protected readonly List<T> DataList = new List<T>(DefaultSize);
         private bool _cacheInitialized;
         private T _firstOrDefaultCache;
         private T _lastOrDefaultCache;
