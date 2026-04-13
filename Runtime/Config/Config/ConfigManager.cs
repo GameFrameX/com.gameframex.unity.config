@@ -123,12 +123,6 @@ namespace GameFrameX.Config.Runtime
         [UnityEngine.Scripting.Preserve]
         public void AddConfig(string configName, IDataTable configValue)
         {
-            bool isExist = m_ConfigDatas.TryGetValue(configName, out var value);
-            if (isExist)
-            {
-                return;
-            }
-
             m_ConfigDatas.TryAdd(configName, configValue);
         }
 
@@ -143,11 +137,6 @@ namespace GameFrameX.Config.Runtime
         [UnityEngine.Scripting.Preserve]
         public bool RemoveConfig(string configName)
         {
-            if (!HasConfig(configName))
-            {
-                return false;
-            }
-
             return m_ConfigDatas.TryRemove(configName, out _);
         }
 
