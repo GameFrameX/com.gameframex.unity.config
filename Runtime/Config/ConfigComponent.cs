@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -116,14 +116,11 @@ namespace GameFrameX.Config.Runtime
         [Preserve]
         public T GetConfig<T>() where T : IDataTable
         {
-            if (HasConfig<T>())
+            var configName = GetTypeName<T>();
+            var config = m_ConfigManager.GetConfig(configName);
+            if (config != null)
             {
-                var configName = GetTypeName<T>();
-                var config = m_ConfigManager.GetConfig(configName);
-                if (config != null)
-                {
-                    return (T)config;
-                }
+                return (T)config;
             }
 
             return default;
