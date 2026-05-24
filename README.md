@@ -1,19 +1,70 @@
-﻿## HOMEPAGE
+<div align="center">
+  <img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="Game Frame X Logo" width="160" />
+</div>
 
-GameFrameX 的 Config 配置表组件
+# Game Frame X Config
 
-**Config 配置表组件 (Config Component)** - 提供配置表相关的接口。
+[![GitHub release](https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.config?style=flat-square)](https://github.com/GameFrameX/com.gameframex.unity.config/releases)
+[![License](https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.config?style=flat-square)](https://github.com/GameFrameX/com.gameframex.unity.config/blob/main/LICENSE.md)
+[![Documentation](https://img.shields.io/badge/Documentation-Online-blue?style=flat-square)](https://gameframex.doc.alianblank.com)
 
-# 使用文档(文档编写于GPT4)
+**All-in-One Solution for Indie Game Development · Empowering Indie Developers' Dreams**
 
-## 注意事项
+[Documentation](https://gameframex.doc.alianblank.com) · [Quick Start](#quick-start) · [QQ Group](https://qm.qq.com/q/5s5e1e6e6e)
 
-# 使用方式(任选其一)
+**Language**: **English** | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
-1. 直接在 `manifest.json` 的文件中的 `dependencies` 节点下添加以下内容
+---
+
+## Project Overview
+
+Game Frame X Config is a Unity configuration table package based on the GameFrameX framework, providing configuration functionality for easier and more efficient config management.
+
+**Config Component** - Provides configuration table related interfaces.
+
+## Quick Start
+
+### System Requirements
+
+- Unity 2019.4 or higher
+- GameFrameX framework 1.1.1 or higher
+
+### Installation
+
+Choose one of the following methods:
+
+1. Add the following to the `dependencies` section in your project's `manifest.json`:
    ```json
-      {"com.gameframex.unity.config": "https://github.com/AlianBlank/com.gameframex.unity.config.git"}
-    ```
-2. 在Unity 的`Packages Manager` 中使用`Git URL` 的方式添加库,地址为：https://github.com/AlianBlank/com.gameframex.unity.config.git
+   {"com.gameframex.unity.config": "https://github.com/AlianBlank/com.gameframex.unity.config.git"}
+   ```
 
-3. 直接下载仓库放置到Unity 项目的`Packages` 目录下。会自动加载识别
+2. Use `Git URL` in Unity's Package Manager:
+   ```
+   https://github.com/AlianBlank/com.gameframex.unity.config.git
+   ```
+
+3. Download the repository and place it in your Unity project's `Packages` directory. It will be loaded automatically.
+
+## Usage Examples
+
+```csharp
+// Standard: via GameEntry (no dependency on com.gameframex.unity.entry)
+var configComponent = GameEntry.GetComponent<ConfigComponent>();
+configComponent.LoadConfig("ConfigPath");
+```
+
+## Dependencies
+
+- `com.gameframex.unity`: GameFrameX core framework
+- `com.gameframex.unity.asset`: GameFrameX Asset package
+- `com.gameframex.unity.event`: GameFrameX Event package
+
+## Documentation & Resources
+
+- Documentation: https://gameframex.doc.alianblank.com
+- Repository: https://github.com/gameframex/com.gameframex.unity.config
+- Issues: https://github.com/gameframex/com.gameframex.unity.config/issues
+
+## License
+
+See [LICENSE](LICENSE.md) for details.
