@@ -47,7 +47,7 @@ namespace GameFrameX.Config.Runtime
     [Preserve]
     public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     {
-        private const int DefaultSize = 1024 * 8;
+        private const int DefaultSize = 64;
         protected readonly Dictionary<long, T> LongDataMaps = new Dictionary<long, T>(DefaultSize);
         protected readonly Dictionary<string, T> StringDataMaps = new Dictionary<string, T>(DefaultSize);
 
@@ -57,6 +57,21 @@ namespace GameFrameX.Config.Runtime
         private T _lastOrDefaultCache;
         private bool _countCacheInitialized;
         private int _countCache;
+
+        /// <summary>
+        /// 使缓存失效。子类在修改 DataList、LongDataMaps 或 StringDataMaps 后必须调用此方法。
+        /// </summary>
+        /// <remarks>
+        /// Invalidates all caches. Subclasses must call this after modifying DataList, LongDataMaps, or StringDataMaps.
+        /// </remarks>
+        protected void InvalidateCache()
+        {
+            _cacheInitialized = false;
+            _countCacheInitialized = false;
+            _firstOrDefaultCache = null;
+            _lastOrDefaultCache = null;
+            _countCache = 0;
+        }
 
         /// <summary>
         /// 异步加载数据表。
@@ -73,6 +88,8 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <remarks>
         /// Gets an object by integer ID.
+        /// 注意：<c>int</c> 会隐式转换为 <c>long</c> 查找，与通过 <c>long</c> 查找共享同一个字典。
+        /// Note: <c>int</c> is implicitly converted to <c>long</c> for lookup, sharing the same dictionary as <c>long</c> lookups.
         /// </remarks>
         /// <param name="id">要获取的对象的整数ID / Integer ID of the object to get</param>
         /// <returns>与指定ID关联的对象；如果找不到则返回 <c>null</c> / The object associated with the specified ID; <c>null</c> if not found</returns>
@@ -121,6 +138,8 @@ namespace GameFrameX.Config.Runtime
         /// </summary>
         /// <remarks>
         /// Tries to get an object by integer ID.
+        /// 注意：<c>int</c> 会隐式转换为 <c>long</c> 查找，与通过 <c>long</c> 查找共享同一个字典。
+        /// Note: <c>int</c> is implicitly converted to <c>long</c> for lookup, sharing the same dictionary as <c>long</c> lookups.
         /// </remarks>
         /// <param name="id">要获取的对象的整数ID / Integer ID of the object to get</param>
         /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值 / The object when found; otherwise the default value</param>
@@ -255,10 +274,10 @@ namespace GameFrameX.Config.Runtime
         }
 
         /// <summary>
-        /// 获取数据表中所有对象。
+        /// 获取数据表中所有对象。每次访问都会分配新数组，高频调用场景请使用 <see cref="ForEach"/> 遍历。
         /// </summary>
         /// <remarks>
-        /// Gets all objects in the data table.
+        /// Gets all objects in the data table. Allocates a new array on every access; use <see cref="ForEach"/> for high-frequency access.
         /// </remarks>
         /// <value>包含数据表中所有对象的数组 / Array containing all objects in the data table</value>
         [Preserve]
@@ -506,15 +525,7 @@ namespace GameFrameX.Config.Runtime
                 return;
             }
 
-            var count = Math.Max(LongDataMaps.Count, StringDataMaps.Count);
-            if (count == 0)
-            {
-                _countCache = 0;
-                _countCacheInitialized = true;
-                return;
-            }
-
-            _countCache = count;
+            _countCache = DataList.Count;
             _countCacheInitialized = true;
         }
     }
