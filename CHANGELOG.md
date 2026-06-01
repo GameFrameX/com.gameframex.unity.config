@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.4...1.1.5) (2026-06-01)
+
+
+### Bug Fixes
+
+* **config:** 修复 BaseDataTable 缓存失效和计数源错误 ([3a1d199](https://github.com/gameframex/com.gameframex.unity.config/commit/3a1d199dc7aadd51a8e8a0d43fc67d7e0894df9f))
+
 ## [1.1.4](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.3...1.1.4) (2026-05-28)
 
 

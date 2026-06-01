@@ -3,7 +3,7 @@
   "displayName": "Game Frame X Config",
   "category": "GameFrameX",
   "description": "GameFrameX Config — Unity configuration and data table management package. Provides named configuration management with generic data tables (IDataTable<T>), supporting lookup by int/long/string IDs, LINQ-style queries (Find, FindList, ForEach, Max, Min, Sum), and async data table loading for non-blocking initialization. Docs: https://gameframex.doc.alianblank.com\n\nGameFrameX Config — Unity 配置与数据表管理功能包。提供命名配置管理与泛型数据表（IDataTable<T>），支持按 int/long/string ID 查找、LINQ 风格查询（Find、FindList、ForEach、Max、Min、Sum），以及异步数据表加载，实现非阻塞初始化。文档：https://gameframex.doc.alianblank.com",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "unity": "2019.4",
   "keywords": [
     "GameFrameX",
