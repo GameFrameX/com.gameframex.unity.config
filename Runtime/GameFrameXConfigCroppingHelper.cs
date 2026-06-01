@@ -9,6 +9,8 @@ namespace GameFrameX.Config.Runtime
         [Preserve]
         private void Start()
         {
+            // 引用所有核心类型以防止 IL2CPP 代码裁剪
+            // Reference all core types to prevent IL2CPP code stripping
             _ = typeof(ConfigManager);
             _ = typeof(IConfigManager);
             _ = typeof(LoadConfigFailureEventArgs);
