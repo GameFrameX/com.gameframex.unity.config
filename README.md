@@ -80,6 +80,14 @@ configComponent.LoadConfig("ConfigPath");
 - Repository: https://github.com/gameframex/com.gameframex.unity.config
 - Issues: https://github.com/gameframex/com.gameframex.unity.config/issues
 
+
+## Community & Support
+
+- QQ Group: 467608841 / 233840761
+
+## Changelog
+
+See [Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.config/releases) for changelog.
 ## License
 
 See [LICENSE](LICENSE.md) for details.

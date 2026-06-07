@@ -80,6 +80,14 @@ configComponent.LoadConfig("ConfigPath");
 - 저장소: https://github.com/gameframex/com.gameframex.unity.config
 - 이슈: https://github.com/gameframex/com.gameframex.unity.config/issues
 
+
+## 커뮤니티 및 지원
+
+- QQ 그룹: 467608841 / 233840761
+
+## 변경 로그
+
+[Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.config/releases)에서 변경 로그를 확인하세요.
 ## 라이선스
 
 자세한 내용은 [LICENSE](LICENSE.md)를 참조하세요.

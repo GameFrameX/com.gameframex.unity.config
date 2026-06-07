@@ -68,7 +68,7 @@ var configComponent = GameEntry.GetComponent<ConfigComponent>();
 configComponent.LoadConfig("ConfigPath");
 ```
 
-## 依赖项
+## 依赖
 
 - `com.gameframex.unity`: GameFrameX 核心框架
 - `com.gameframex.unity.asset`: GameFrameX Asset 资源包
@@ -80,6 +80,14 @@ configComponent.LoadConfig("ConfigPath");
 - 仓库地址: https://github.com/gameframex/com.gameframex.unity.config
 - 问题反馈: https://github.com/gameframex/com.gameframex.unity.config/issues
 
+
+## 社区与支持
+
+- QQ群: 467608841 / 233840761
+
+## 更新日志
+
+查看 [Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.config/releases) 了解更新日志。
 ## 开源协议
 
 详细信息请查看 [LICENSE](LICENSE.md) 文件。

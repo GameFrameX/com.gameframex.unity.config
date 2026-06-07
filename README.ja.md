@@ -80,6 +80,14 @@ configComponent.LoadConfig("ConfigPath");
 - リポジトリ: https://github.com/gameframex/com.gameframex.unity.config
 - イシュー: https://github.com/gameframex/com.gameframex.unity.config/issues
 
+
+## コミュニティとサポート
+
+- QQグループ: 467608841 / 233840761
+
+## 変更履歴
+
+[Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.config/releases) で変更履歴を確認してください。
 ## ライセンス
 
 詳細は [LICENSE](LICENSE.md) をご覧ください。

@@ -80,6 +80,22 @@ configComponent.LoadConfig("ConfigPath");
 - 倉庫地址: https://github.com/gameframex/com.gameframex.unity.config
 - 問題回報: https://github.com/gameframex/com.gameframex.unity.config/issues
 
+
+## 依賴
+
+| 套件 | 說明 |
+|------|------|
+| `com.gameframex.unity` | 1.1.1 |
+| `com.gameframex.unity.asset` | 1.0.6 |
+| `com.gameframex.unity.event` | 1.0.0 |
+
+## 社區與支援
+
+- QQ群: 467608841 / 233840761
+
+## 更新日誌
+
+查看 [Releases](https://github.com/GameFrameX/gameframex/com.gameframex.unity.config/releases) 了解更新日誌。
 ## 開源協議
 
 詳細資訊請查看 [LICENSE](LICENSE.md) 檔案。
