@@ -29,26 +29,36 @@ Game Frame X Config is a Unity configuration table package based on the GameFram
 
 ## Quick Start
 
-### System Requirements
-
-- Unity 2019.4 or higher
-- GameFrameX framework 1.1.1 or higher
-
 ### Installation
 
-Choose one of the following methods:
+Edit your Unity project's `Packages/manifest.json` and add the `scopedRegistries` section:
 
-1. Add the following to the `dependencies` section in your project's `manifest.json`:
-   ```json
-   {"com.gameframex.unity.config": "https://github.com/AlianBlank/com.gameframex.unity.config.git"}
-   ```
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
 
-2. Use `Git URL` in Unity's Package Manager:
-   ```
-   https://github.com/AlianBlank/com.gameframex.unity.config.git
-   ```
+`scopes` controls which packages are resolved through this registry. Only packages whose names start with `com.gameframex` will be fetched from it.
 
-3. Download the repository and place it in your Unity project's `Packages` directory. It will be loaded automatically.
+Then add the package to `dependencies`:
+
+```json
+{
+  "dependencies": {
+    "com.gameframex.unity.config": "1.1.5"
+  }
+}
+```
+
 
 ## Usage Examples
 
