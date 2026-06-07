@@ -20,6 +20,7 @@
 [English](README.md) | **简体中文** | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 </div>
+
 ## 项目简介
 
 Game Frame X Config 是一个基于 GameFrameX 框架的 Unity 配置表功能包，提供配置功能，使配置功能的使用更加简单高效。
