@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.5...1.1.6) (2026-06-07)
+
+
+### Bug Fixes
+
+* 补全包规范文件（LICENSE/CHANGELOG/URL 字段/unity 字段） ([9f1c6a2](https://github.com/gameframex/com.gameframex.unity.config/commit/9f1c6a2e4b80fa655f38411aa0d61a5d96907858))
+
 ## [1.1.5](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.4...1.1.5) (2026-06-01)
 
 
