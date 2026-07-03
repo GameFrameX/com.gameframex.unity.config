@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.6...1.2.0) (2026-07-03)
+
+
+### Features
+
+* **config:** 为 ConfigComponent 添加自动注册标记 ([0846b3d](https://github.com/gameframex/com.gameframex.unity.config/commit/0846b3da394ae954b1fdae134463e44736e1045d))
+
 ## [1.1.6](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.5...1.1.6) (2026-06-07)
 
 
