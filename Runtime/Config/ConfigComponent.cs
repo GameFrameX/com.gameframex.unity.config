@@ -45,6 +45,7 @@ namespace GameFrameX.Config.Runtime
     /// </remarks>
     [DisallowMultipleComponent]
     [AddComponentMenu("GameFrameX/Config")]
+    [GameFrameXAutoComponent(-5000)]
     public sealed class ConfigComponent : GameFrameworkComponent
     {
         private IConfigManager m_ConfigManager = null;
