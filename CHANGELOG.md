@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/gameframex/com.gameframex.unity.config/compare/1.2.0...1.2.1) (2026-07-29)
+
+
+### Bug Fixes
+
+* **dependencies:** 更新依赖版本以支持新功能 ([b18a4ae](https://github.com/gameframex/com.gameframex.unity.config/commit/b18a4ae80d16f2ccc95840bd8dba457469cca3ca))
+
 # [1.2.0](https://github.com/gameframex/com.gameframex.unity.config/compare/1.1.6...1.2.0) (2026-07-03)
 
 
