@@ -95,5 +95,20 @@ namespace GameFrameX.Config.Runtime
         /// Removes all global configuration items.
         /// </remarks>
         void RemoveAllConfigs();
+
+        /// <summary>
+        /// 获取指定类型的全局配置项；不存在时返回默认值（原 ConfigComponent 泛型便捷层，C9 归位模块）。
+        /// </summary>
+        T GetConfig<T>() where T : IDataTable;
+
+        /// <summary>
+        /// 检查是否存在指定类型的全局配置项。
+        /// </summary>
+        bool HasConfig<T>() where T : IDataTable;
+
+        /// <summary>
+        /// 移除指定类型的全局配置项。
+        /// </summary>
+        bool RemoveConfig<T>() where T : IDataTable;
     }
 }

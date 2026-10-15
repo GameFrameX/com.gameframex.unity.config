@@ -57,6 +57,7 @@ namespace GameFrameX.Config.Runtime
         /// <remarks>
         /// Initializes a new instance of the load global configuration update event.
         /// </remarks>
+        [UnityEngine.Scripting.Preserve]
         public LoadConfigUpdateEventArgs()
         {
             ConfigAssetName = null;
@@ -83,6 +84,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the global configuration asset name.
         /// </remarks>
         /// <value>全局配置资源名称 / Global configuration asset name</value>
+        [UnityEngine.Scripting.Preserve]
         public string ConfigAssetName { get; private set; }
 
         /// <summary>
@@ -92,6 +94,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the loading progress of the global configuration.
         /// </remarks>
         /// <value>加载进度，范围为 0.0 到 1.0 / Loading progress, ranging from 0.0 to 1.0</value>
+        [UnityEngine.Scripting.Preserve]
         public float Progress { get; private set; }
 
         /// <summary>
@@ -101,6 +104,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the user custom data.
         /// </remarks>
         /// <value>用户自定义数据 / User custom data</value>
+        [UnityEngine.Scripting.Preserve]
         public object UserData { get; private set; }
 
         /// <summary>
@@ -113,6 +117,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="progress">加载进度，范围为 0.0 到 1.0 / Loading progress, ranging from 0.0 to 1.0</param>
         /// <param name="userData">用户自定义数据 / User custom data</param>
         /// <returns>创建的加载全局配置更新事件 / The created load global configuration update event</returns>
+        [UnityEngine.Scripting.Preserve]
         public static LoadConfigUpdateEventArgs Create(string dataAssetName, float progress, object userData)
         {
             LoadConfigUpdateEventArgs loadConfigUpdateEventArgs = ReferencePool.Acquire<LoadConfigUpdateEventArgs>();

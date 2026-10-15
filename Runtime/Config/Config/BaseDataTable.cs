@@ -33,7 +33,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Config.Runtime
 {
@@ -44,7 +43,7 @@ namespace GameFrameX.Config.Runtime
     /// Generic base class for data tables, providing data storage and query capabilities.
     /// </remarks>
     /// <typeparam name="T">数据表中元素的类型，必须为引用类型 / Type of elements in the data table, must be a reference type</typeparam>
-    [Preserve]
+    [UnityEngine.Scripting.Preserve]
     public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     {
         private const int DefaultSize = 64;
@@ -80,7 +79,7 @@ namespace GameFrameX.Config.Runtime
         /// Asynchronously loads the data table.
         /// </remarks>
         /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public abstract Task LoadAsync();
 
         /// <summary>
@@ -93,7 +92,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="id">要获取的对象的整数ID / Integer ID of the object to get</param>
         /// <returns>与指定ID关联的对象；如果找不到则返回 <c>null</c> / The object associated with the specified ID; <c>null</c> if not found</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("请使用TryGet方法")]
         public T Get(int id)
         {
@@ -109,7 +108,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="id">要获取的对象的长整数ID / Long integer ID of the object to get</param>
         /// <returns>与指定ID关联的对象；如果找不到则返回 <c>null</c> / The object associated with the specified ID; <c>null</c> if not found</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("请使用TryGet方法")]
         public T Get(long id)
         {
@@ -125,7 +124,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="id">要获取的对象的字符串ID / String ID of the object to get</param>
         /// <returns>与指定ID关联的对象；如果找不到则返回 <c>null</c> / The object associated with the specified ID; <c>null</c> if not found</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         [Obsolete("请使用TryGet方法")]
         public T Get(string id)
         {
@@ -144,7 +143,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id">要获取的对象的整数ID / Integer ID of the object to get</param>
         /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值 / The object when found; otherwise the default value</param>
         /// <returns>如果找到对应ID的对象则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if the object is found; otherwise <c>false</c></returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public bool TryGet(int id, out T value)
         {
             return LongDataMaps.TryGetValue(id, out value);
@@ -159,7 +158,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id">要获取的对象的长整数ID / Long integer ID of the object to get</param>
         /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值 / The object when found; otherwise the default value</param>
         /// <returns>如果找到对应ID的对象则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if the object is found; otherwise <c>false</c></returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public bool TryGet(long id, out T value)
         {
             return LongDataMaps.TryGetValue(id, out value);
@@ -174,7 +173,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="id">要获取的对象的字符串ID / String ID of the object to get</param>
         /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值 / The object when found; otherwise the default value</param>
         /// <returns>如果找到对应ID的对象则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if the object is found; otherwise <c>false</c></returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public bool TryGet(string id, out T value)
         {
             return StringDataMaps.TryGetValue(id, out value);
@@ -188,7 +187,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="id">要获取的对象的整数主键 / Integer primary key of the object to get</param>
         /// <value>与指定主键关联的数据对象；如果找不到则返回 <c>null</c> / The data object associated with the specified key; <c>null</c> if not found</value>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T this[int id]
         {
             get { return TryGet(id, out var value) ? value : null; }
@@ -202,7 +201,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="id">要获取的对象的长整数主键 / Long integer primary key of the object to get</param>
         /// <value>与指定主键关联的数据对象；如果找不到则返回 <c>null</c> / The data object associated with the specified key; <c>null</c> if not found</value>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T this[long id]
         {
             get { return TryGet(id, out var value) ? value : null; }
@@ -216,7 +215,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="id">要获取的对象的字符串键 / String key of the object to get</param>
         /// <value>与指定键关联的数据对象；如果找不到则返回 <c>null</c> / The data object associated with the specified key; <c>null</c> if not found</value>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T this[string id]
         {
             get { return TryGet(id, out var value) ? value : null; }
@@ -229,7 +228,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the number of objects in the data table.
         /// </remarks>
         /// <value>数据表中对象的数量 / Number of objects in the data table</value>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public int Count
         {
             get
@@ -246,7 +245,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the first object in the data table.
         /// </remarks>
         /// <value>如果数据表为空，则返回 <c>null</c>；否则返回第一个对象 / <c>null</c> if the data table is empty; otherwise the first object</value>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T FirstOrDefault
         {
             get
@@ -263,7 +262,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the last object in the data table.
         /// </remarks>
         /// <value>如果数据表为空，则返回 <c>null</c>；否则返回最后一个对象 / <c>null</c> if the data table is empty; otherwise the last object</value>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T LastOrDefault
         {
             get
@@ -280,7 +279,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets all objects in the data table. Allocates a new array on every access; use <see cref="ForEach"/> for high-frequency access.
         /// </remarks>
         /// <value>包含数据表中所有对象的数组 / Array containing all objects in the data table</value>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T[] All
         {
             get { return DataList.ToArray(); }
@@ -293,7 +292,7 @@ namespace GameFrameX.Config.Runtime
         /// Copies all objects in the data table to a new array.
         /// </remarks>
         /// <returns>包含数据表中所有对象的新数组 / A new array containing all objects in the data table</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T[] ToArray()
         {
             return DataList.ToArray();
@@ -306,7 +305,7 @@ namespace GameFrameX.Config.Runtime
         /// Copies all objects in the data table to a new list.
         /// </remarks>
         /// <returns>包含数据表中所有对象的新列表 / A new list containing all objects in the data table</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public List<T> ToList()
         {
             return DataList.ToList();
@@ -320,7 +319,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="func">用于定义匹配条件的函数 / Function to define the matching condition</param>
         /// <returns>如果找到匹配的对象，则返回该对象；否则返回 <c>null</c> / The matching object if found; otherwise <c>null</c></returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T Find(Func<T, bool> func)
         {
             return DataList.FirstOrDefault(func);
@@ -334,7 +333,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="func">用于定义匹配条件的函数 / Function to define the matching condition</param>
         /// <returns>包含所有匹配对象的数组 / Array containing all matching objects</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public T[] FindListArray(Func<T, bool> func)
         {
             return DataList.Where(func).ToArray();
@@ -348,7 +347,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="func">用于定义匹配条件的函数 / Function to define the matching condition</param>
         /// <returns>包含所有匹配对象的列表 / List containing all matching objects</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public List<T> FindList(Func<T, bool> func)
         {
             return DataList.Where(func).ToList();
@@ -361,7 +360,7 @@ namespace GameFrameX.Config.Runtime
         /// Performs the specified action on each element in the data table.
         /// </remarks>
         /// <param name="func">要对每个元素执行的操作 / Action to perform on each element</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void ForEach(Action<T> func)
         {
             DataList.ForEach(func);
@@ -376,7 +375,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="func">用于获取比较值的函数 / Function to extract the comparison value</param>
         /// <typeparam name="Tk">比较值的类型，必须实现 <see cref="IComparable{Tk}"/> 接口 / Type of the comparison value, must implement <see cref="IComparable{Tk}"/></typeparam>
         /// <returns>指定属性的最大值 / The maximum value of the specified property</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public Tk Max<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>
         {
             return DataList.Max(func);
@@ -391,7 +390,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="func">用于获取比较值的函数 / Function to extract the comparison value</param>
         /// <typeparam name="Tk">比较值的类型，必须实现 <see cref="IComparable{Tk}"/> 接口 / Type of the comparison value, must implement <see cref="IComparable{Tk}"/></typeparam>
         /// <returns>指定属性的最小值 / The minimum value of the specified property</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public Tk Min<Tk>(Func<T, Tk> func) where Tk : IComparable<Tk>
         {
             return DataList.Min(func);
@@ -405,7 +404,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="func">用于获取求和值的函数 / Function to extract the value to sum</param>
         /// <returns>指定属性的总和 / The sum of the specified property</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public int Sum(Func<T, int> func)
         {
             return DataList.Sum(func);
@@ -419,7 +418,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="func">用于获取求和值的函数 / Function to extract the value to sum</param>
         /// <returns>指定属性的总和 / The sum of the specified property</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public long Sum(Func<T, long> func)
         {
             return DataList.Sum(func);
@@ -433,7 +432,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="func">用于获取求和值的函数 / Function to extract the value to sum</param>
         /// <returns>指定属性的总和 / The sum of the specified property</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public float Sum(Func<T, float> func)
         {
             return DataList.Sum(func);
@@ -447,7 +446,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="func">用于获取求和值的函数 / Function to extract the value to sum</param>
         /// <returns>指定属性的总和 / The sum of the specified property</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public double Sum(Func<T, double> func)
         {
             return DataList.Sum(func);
@@ -461,7 +460,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="func">用于获取求和值的函数 / Function to extract the value to sum</param>
         /// <returns>指定属性的总和 / The sum of the specified property</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public decimal Sum(Func<T, decimal> func)
         {
             return DataList.Sum(func);

@@ -57,6 +57,7 @@ namespace GameFrameX.Config.Runtime
         /// <remarks>
         /// Initializes a new instance of the load global configuration failure event.
         /// </remarks>
+        [UnityEngine.Scripting.Preserve]
         public LoadConfigFailureEventArgs()
         {
             ConfigAssetName = null;
@@ -83,6 +84,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the global configuration asset name.
         /// </remarks>
         /// <value>全局配置资源名称 / Global configuration asset name</value>
+        [UnityEngine.Scripting.Preserve]
         public string ConfigAssetName { get; private set; }
 
         /// <summary>
@@ -92,6 +94,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the error message.
         /// </remarks>
         /// <value>错误信息 / Error message</value>
+        [UnityEngine.Scripting.Preserve]
         public string ErrorMessage { get; private set; }
 
         /// <summary>
@@ -101,6 +104,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the user custom data.
         /// </remarks>
         /// <value>用户自定义数据 / User custom data</value>
+        [UnityEngine.Scripting.Preserve]
         public object UserData { get; private set; }
 
         /// <summary>
@@ -113,6 +117,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="errorMessage">错误信息 / Error message</param>
         /// <param name="userData">用户自定义数据 / User custom data</param>
         /// <returns>创建的加载全局配置失败事件 / The created load global configuration failure event</returns>
+        [UnityEngine.Scripting.Preserve]
         public static LoadConfigFailureEventArgs Create(string dataAssetName, string errorMessage, object userData)
         {
             LoadConfigFailureEventArgs loadConfigFailureEventArgs = ReferencePool.Acquire<LoadConfigFailureEventArgs>();

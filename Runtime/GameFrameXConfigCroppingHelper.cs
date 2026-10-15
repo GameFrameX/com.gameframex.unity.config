@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Config.Runtime
 {
-    [Preserve]
+    [UnityEngine.Scripting.Preserve]
     public class GameFrameXConfigCroppingHelper : MonoBehaviour
     {
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         private void Start()
         {
             // 引用所有核心类型以防止 IL2CPP 代码裁剪
@@ -18,7 +17,7 @@ namespace GameFrameX.Config.Runtime
             _ = typeof(LoadConfigUpdateEventArgs);
             _ = typeof(IDataTable<>);
             _ = typeof(BaseDataTable<>);
-            _ = typeof(ConfigComponent);
+            _ = typeof(ConfigManager);
         }
     }
 }

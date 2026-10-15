@@ -57,6 +57,7 @@ namespace GameFrameX.Config.Runtime
         /// <remarks>
         /// Initializes a new instance of the load global configuration success event.
         /// </remarks>
+        [UnityEngine.Scripting.Preserve]
         public LoadConfigSuccessEventArgs()
         {
             ConfigAssetName = null;
@@ -83,6 +84,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the global configuration asset name.
         /// </remarks>
         /// <value>全局配置资源名称 / Global configuration asset name</value>
+        [UnityEngine.Scripting.Preserve]
         public string ConfigAssetName { get; private set; }
 
         /// <summary>
@@ -92,6 +94,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the loading duration.
         /// </remarks>
         /// <value>加载持续时间，以秒为单位 / Loading duration in seconds</value>
+        [UnityEngine.Scripting.Preserve]
         public float Duration { get; private set; }
 
         /// <summary>
@@ -101,6 +104,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the user custom data.
         /// </remarks>
         /// <value>用户自定义数据 / User custom data</value>
+        [UnityEngine.Scripting.Preserve]
         public object UserData { get; private set; }
 
         /// <summary>
@@ -113,6 +117,7 @@ namespace GameFrameX.Config.Runtime
         /// <param name="duration">加载持续时间，以秒为单位 / Loading duration in seconds</param>
         /// <param name="userData">用户自定义数据 / User custom data</param>
         /// <returns>创建的加载全局配置成功事件 / The created load global configuration success event</returns>
+        [UnityEngine.Scripting.Preserve]
         public static LoadConfigSuccessEventArgs Create(string dataAssetName, float duration, object userData)
         {
             LoadConfigSuccessEventArgs loadConfigSuccessEventArgs = ReferencePool.Acquire<LoadConfigSuccessEventArgs>();

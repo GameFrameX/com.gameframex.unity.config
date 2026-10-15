@@ -30,10 +30,8 @@
 // ==========================================================================================
 
 using System;
-using System.Collections.Concurrent;
 using GameFrameX.Runtime;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Config.Runtime
 {
@@ -49,7 +47,6 @@ namespace GameFrameX.Config.Runtime
     public sealed class ConfigComponent : GameFrameworkComponent
     {
         private IConfigManager m_ConfigManager = null;
-        private ConcurrentDictionary<Type, string> m_ConfigNameTypeMap = new ConcurrentDictionary<Type, string>();
 
         /// <summary>
         /// 获取全局配置项数量。
@@ -58,7 +55,7 @@ namespace GameFrameX.Config.Runtime
         /// Gets the number of global configuration items.
         /// </remarks>
         /// <value>全局配置项数量 / Number of global configuration items</value>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public int Count
         {
             get { return m_ConfigManager.Count; }
@@ -72,7 +69,6 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         protected override void Awake()
         {
-            m_ConfigNameTypeMap.Clear();
             ImplementationComponentType = Utility.Assembly.GetType(componentType);
             InterfaceComponentType = typeof(IConfigManager);
             base.Awake();
@@ -85,46 +81,14 @@ namespace GameFrameX.Config.Runtime
         }
 
         /// <summary>
-        /// 获取指定类型的全局配置项名称。
+        /// 获取指定全局配置项。薄入口：转发到模块。
         /// </summary>
-        /// <remarks>
-        /// Gets the name of the global configuration item for the specified type.
-        /// </remarks>
-        /// <typeparam name="T">配置项的类型 / Type of the configuration item</typeparam>
-        /// <returns>类型名称 / Type name</returns>
-        [Preserve]
-        private string GetTypeName<T>()
-        {
-            if (m_ConfigNameTypeMap.TryGetValue(typeof(T), out var configName))
-            {
-                return configName;
-            }
-
-            configName = typeof(T).Name;
-            m_ConfigNameTypeMap.TryAdd(typeof(T), configName);
-
-            return configName;
-        }
-
-        /// <summary>
-        /// 获取指定全局配置项。
-        /// </summary>
-        /// <remarks>
-        /// Gets the specified global configuration item.
-        /// </remarks>
-        /// <typeparam name="T">配置项的类型，必须实现 <see cref="IDataTable"/> 接口 / Type of the configuration item, must implement <see cref="IDataTable"/></typeparam>
-        /// <returns>获取到的全局配置项；如果不存在则返回默认值 / The retrieved global configuration item; default value if not found</returns>
-        [Preserve]
+        /// <typeparam name="T">配置项的类型，必须实现 <see cref="IDataTable"/> 接口</typeparam>
+        /// <returns>获取到的全局配置项；如果不存在则返回默认值</returns>
+        [UnityEngine.Scripting.Preserve]
         public T GetConfig<T>() where T : IDataTable
         {
-            var configName = GetTypeName<T>();
-            var config = m_ConfigManager.GetConfig(configName);
-            if (config != null)
-            {
-                return (T)config;
-            }
-
-            return default;
+            return m_ConfigManager.GetConfig<T>();
         }
 
         /// <summary>
@@ -135,11 +99,10 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <typeparam name="T">配置项的类型，必须实现 <see cref="IDataTable"/> 接口 / Type of the configuration item, must implement <see cref="IDataTable"/></typeparam>
         /// <returns>指定的全局配置项是否存在 / Whether the specified global configuration item exists</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public bool HasConfig<T>() where T : IDataTable
         {
-            var configName = GetTypeName<T>();
-            return m_ConfigManager.HasConfig(configName);
+            return m_ConfigManager.HasConfig<T>();
         }
 
         /// <summary>
@@ -150,11 +113,10 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <typeparam name="T">配置项的类型，必须实现 <see cref="IDataTable"/> 接口 / Type of the configuration item, must implement <see cref="IDataTable"/></typeparam>
         /// <returns>是否移除全局配置项成功 / Whether the global configuration item was removed successfully</returns>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public bool RemoveConfig<T>() where T : IDataTable
         {
-            var configName = GetTypeName<T>();
-            return m_ConfigManager.RemoveConfig(configName);
+            return m_ConfigManager.RemoveConfig<T>();
         }
 
         /// <summary>
@@ -163,10 +125,9 @@ namespace GameFrameX.Config.Runtime
         /// <remarks>
         /// Removes all global configuration items.
         /// </remarks>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void RemoveAllConfigs()
         {
-            m_ConfigNameTypeMap.Clear();
             m_ConfigManager.RemoveAllConfigs();
         }
 
@@ -178,7 +139,7 @@ namespace GameFrameX.Config.Runtime
         /// </remarks>
         /// <param name="configName">全局配置项的名称 / Name of the global configuration item</param>
         /// <param name="dataTable">全局配置项的数据表实例 / Data table instance of the global configuration item</param>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public void Add(string configName, IDataTable dataTable)
         {
             m_ConfigManager.AddConfig(configName, dataTable);

@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -44,7 +44,7 @@ namespace GameFrameX.Config.Runtime
     /// Global configuration manager.
     /// </remarks>
     [UnityEngine.Scripting.Preserve]
-    public sealed partial class ConfigManager : GameFrameworkModule, IConfigManager
+    public sealed partial class ConfigManager : IGameFrameworkModule, IConfigManager, IShutdownableModule
     {
         private readonly ConcurrentDictionary<string, IDataTable> m_ConfigDatas;
 
@@ -67,22 +67,10 @@ namespace GameFrameX.Config.Runtime
         /// Gets the number of global configuration items.
         /// </remarks>
         /// <value>全局配置项数量 / Number of global configuration items</value>
+        [UnityEngine.Scripting.Preserve]
         public int Count
         {
             get { return m_ConfigDatas.Count; }
-        }
-
-
-        /// <summary>
-        /// 全局配置管理器轮询。
-        /// </summary>
-        /// <remarks>
-        /// Global configuration manager tick.
-        /// </remarks>
-        /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位 / Logical elapsed time in seconds</param>
-        /// <param name="realElapseSeconds">真实流逝时间，以秒为单位 / Real elapsed time in seconds</param>
-        protected override void Update(float elapseSeconds, float realElapseSeconds)
-        {
         }
 
         /// <summary>
@@ -91,11 +79,11 @@ namespace GameFrameX.Config.Runtime
         /// <remarks>
         /// Shuts down and cleans up the global configuration manager.
         /// </remarks>
-        protected override void Shutdown()
+        [UnityEngine.Scripting.Preserve]
+        public void Shutdown()
         {
             RemoveAllConfigs();
         }
-
 
         /// <summary>
         /// 检查是否存在指定全局配置项。
@@ -110,7 +98,6 @@ namespace GameFrameX.Config.Runtime
         {
             return m_ConfigDatas.TryGetValue(configName, out _);
         }
-
 
         /// <summary>
         /// 增加指定全局配置项。
@@ -163,7 +150,61 @@ namespace GameFrameX.Config.Runtime
         [UnityEngine.Scripting.Preserve]
         public void RemoveAllConfigs()
         {
+            m_ConfigNameTypeMap.Clear();
             m_ConfigDatas.Clear();
         }
+
+        private readonly ConcurrentDictionary<Type, string> m_ConfigNameTypeMap = new ConcurrentDictionary<Type, string>();
+
+        /// <summary>
+        /// 获取指定类型的全局配置项名称（带并发缓存，原 ConfigComponent 组合逻辑，C9 组件移除后归位模块）。
+        /// </summary>
+        private string GetTypeName<T>()
+        {
+            if (m_ConfigNameTypeMap.TryGetValue(typeof(T), out var configName))
+            {
+                return configName;
+            }
+
+            configName = typeof(T).Name;
+            m_ConfigNameTypeMap.TryAdd(typeof(T), configName);
+
+            return configName;
+        }
+
+        /// <summary>
+        /// 获取指定类型的全局配置项；不存在时返回默认值。
+        /// </summary>
+        [UnityEngine.Scripting.Preserve]
+        public T GetConfig<T>() where T : IDataTable
+        {
+            var configName = GetTypeName<T>();
+            var config = GetConfig(configName);
+            if (config != null)
+            {
+                return (T)config;
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// 检查是否存在指定类型的全局配置项。
+        /// </summary>
+        [UnityEngine.Scripting.Preserve]
+        public bool HasConfig<T>() where T : IDataTable
+        {
+            return HasConfig(GetTypeName<T>());
+        }
+
+        /// <summary>
+        /// 移除指定类型的全局配置项。
+        /// </summary>
+        [UnityEngine.Scripting.Preserve]
+        public bool RemoveConfig<T>() where T : IDataTable
+        {
+            return RemoveConfig(GetTypeName<T>());
+        }
+
     }
 }
