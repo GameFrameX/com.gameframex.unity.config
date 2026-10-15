@@ -3,7 +3,7 @@
     "displayName": "Game Frame X Config",
     "category": "GameFrameX",
     "description": "GameFrameX Config — Unity data table configuration package. Loads typed data tables (IDataTable<T>) asynchronously and looks rows up by int / long / string id with TryGet safe lookups (legacy Get overloads are obsolete), Find / FindList / ForEach / Sum queries, row counts and bulk removal. Emits ReferencePool-backed success / failure / progress events during loads; the component is a thin forwarding entry with the module reachable via GetModule<T>() / GameApp.Config. Docs: https://gameframex.doc.alianblank.com\n\nGameFrameX Config — Unity 数据表配置功能包。异步加载类型化数据表（IDataTable<T>），支持按 int / long / string 主键查找（TryGet 安全获取，旧 Get 重载已废弃）、Find / FindList / ForEach / Sum 查询、行数统计与批量移除；加载过程发布池化的成功/失败/进度事件。组件为纯转发薄入口，模块可经 GetModule<T>() / GameApp.Config 直达。文档：https://gameframex.doc.alianblank.com",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "unity": "2019.4",
     "keywords": [
         "GameFrameX",
