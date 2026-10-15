@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/gameframex/com.gameframex.unity.config/compare/1.2.1...2.0.0) (2026-10-15)
+
+
+* feat(module)!: 配置模块薄入口化并迁移接口契约 ([77cf0ba](https://github.com/gameframex/com.gameframex.unity.config/commit/77cf0ba5010d524517bf819f09824ad21624bafa))
+
+
+### BREAKING CHANGES
+
+* ConfigComponent 序列化字段移除；模块契约全接口化。
+
 ## [Unreleased]
 
 ### ⚠ BREAKING CHANGES
